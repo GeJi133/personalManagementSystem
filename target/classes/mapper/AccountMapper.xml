@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.csu.personalManageSystem.persistence.AccountMapper">
+<mapper namespace="org.csu.personalManagementSystem.persistence.AccountMapper">
 
     <select id="getSignOnByUsernameAndPassword" parameterType="Account" resultType="Account">
         SELECT

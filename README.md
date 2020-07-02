@@ -1,2 +1,0 @@
-# backManagement
-personalManageSystem back management
