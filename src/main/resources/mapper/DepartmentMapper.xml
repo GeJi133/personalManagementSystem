@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.DepartmentMapper">
+
+    <select id="getAll" resultType="Department">
+        SELECT
+        *
+        FROM
+        department
+    </select>
+
+    <select id="getDepartmentByDno" parameterType="string" resultType="Department">
+        SELECT
+          *
+        FROM
+        department
+        WHERE
+        department.dno = #{dno}
+  </select>
+
+    <select id="getDepartmentByDepartment" parameterType="string" resultType="Department">
+        SELECT *
+        FROM
+        department
+        WHERE 1=1
+        <if test="department != null and department!=''">
+            AND (department like concat('%',#{department},'%'))
+        </if>
+  </select>
+
+    <insert id="insertDepartment" parameterType="Department">
+    INSERT INTO department
+      (dno, department, business)
+    VALUES
+      (#{dno}, #{department}, #{business})
+  </insert>
+
+    <update id="updateDepartment" parameterType="Department">
+        UPDATE department
+        <set>
+            <if test="department!=null and department!=''">department=#{department},</if>
+            <if test="business!=null and business!=''">business=#{business},</if>
+        </set>
+        WHERE dno = #{dno}
+    </update>
+
+    <delete id="deleteDepartment" parameterType="string">
+    delete from department
+    where dno = #{dno}
+  </delete>
+</mapper>
