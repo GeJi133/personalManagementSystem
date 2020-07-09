@@ -29,6 +29,7 @@ public class DepartmentController {
         return appResult;
     }
 
+
     @GetMapping(value = "/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<Department> viewDepartment(@PathVariable("dno") String dno){
         AppResult<Department> appResult = new AppResult<>();
