@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.JobMapper">
+
+    <select id="getAll" resultType="Job">
+        SELECT
+        *
+        FROM
+        job
+    </select>
+
+    <select id="getJobByDno" parameterType="string" resultType="Job">
+        SELECT
+          *
+        FROM
+        job
+        WHERE
+        job.jno = #{jno}
+  </select>
+
+    <select id="getJobByJob" parameterType="string" resultType="Job">
+        SELECT *
+        FROM
+        job
+        WHERE 1=1
+        <if test="job != null and job!=''">
+            AND (job like concat('%',#{job},'%'))
+        </if>
+    </select>
+
+    <insert id="insertJob" parameterType="Job">
+    INSERT INTO job
+      (jno, job, description)
+    VALUES
+      (#{jno}, #{job}, #{description})
+  </insert>
+
+    <update id="updateJob" parameterType="Job">
+        UPDATE job
+        <set>
+            <if test="job!=null and job!=''">job=#{job},</if>
+            <if test="description!=null and description!=''">description=#{description},</if>
+        </set>
+        WHERE jno = #{jno}
+    </update>
+
+    <delete id="deleteJob" parameterType="string">
+    delete from job
+    where jno = #{jno}
+  </delete>
+</mapper>
