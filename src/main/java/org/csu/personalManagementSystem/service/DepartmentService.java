@@ -1,6 +1,7 @@
 package org.csu.personalManagementSystem.service;
 
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.persistence.DepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,11 @@ public class DepartmentService {
     }
 
 
-    //查询部门下属员工,还未实现
+    //查询部门下属员工
+    public List<Employee> getAllEmployee(String dno){
 
+        return DepartmentMapper.getAllEmployee(dno);
+    }
 
     //主要用于新建一个部门
     public void insertDep(Department department) {

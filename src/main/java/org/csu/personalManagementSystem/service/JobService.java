@@ -1,5 +1,6 @@
 package org.csu.personalManagementSystem.service;
 
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.persistence.JobMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,16 @@ public class JobService {
     }
 
     //通过模糊查找获取相关的岗位信息,岗位描述
-    public List<Job> getDepartmentByDescription(String description){
-        return JobMapper.getDepartmentByDescription(description);
+    public List<Job> getJobByDescription(String description){
+        return JobMapper.getJobByDescription(description);
     }
 
-    //查询岗位下属员工,还未实现
+    //查询岗位下属员工
+    public List<Employee> getAllEmployee(String jno){
+
+        return JobMapper.getAllEmployee(jno);
+    }
+
 
     //主要用于新建一个岗位
     public void insertJob(Job Job) {

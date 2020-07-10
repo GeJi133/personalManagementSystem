@@ -2,6 +2,7 @@ package org.csu.personalManagementSystem.controller;
 
 import org.csu.personalManagementSystem.domain.AppResult;
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.DepartmentService;
@@ -64,6 +65,17 @@ public class DepartmentController {
 
         return appResult;
     }*/
+
+
+    //查询部门下属员工
+    @GetMapping(value = "/employees/{dno}", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Employee>> getEmployees(@PathVariable("dno") String dno){
+        AppResult<List<Employee>> appResult = new AppResult<>();
+        List<Employee> employees = departmentService.getAllEmployee(dno);
+        appResult = ResultBuilder.successData(ResultCode.OK,employees);
+        return appResult;
+    }
+
 
     //新增一个部门
     @PostMapping(value = "/",produces="application/Json;charset=UTF-8")

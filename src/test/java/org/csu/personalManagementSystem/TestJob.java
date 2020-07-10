@@ -1,6 +1,7 @@
 package org.csu.personalManagementSystem;
 
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.service.JobService;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,18 @@ public class TestJob {
 
     }
 
+    //测试查询岗位下属员工
+    @Test
+    void testGetAllEmployee(){
 
+        String jno = "21"; // 21 是数据库中 人力专员的jno 编号
+        List<Employee> list = jobService.getAllEmployee(jno);
+        for (Employee obj:list
+        ) {
+            System.out.println(obj.getName() + "," + obj.getJobs());
+
+        }
+    }
     //测试新建岗位
     @Test
     void testInsertJob(){

@@ -2,6 +2,7 @@ package org.csu.personalManagementSystem.persistence;
 
 import org.apache.ibatis.annotations.Param;
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.domain.Job;
 import org.springframework.stereotype.Repository;
 
@@ -20,10 +21,10 @@ public interface JobMapper {
     List<Job> getJobByJob(@Param("job") String job);
 
     //通过模糊查找获取相关的岗位信息,岗位名
-    List<Job> getDepartmentByDescription(@Param("description") String description);
+    List<Job> getJobByDescription(@Param("description") String description);
 
-    //查询岗位下属员工,还未实现
-
+    //查询岗位下属员工
+    List<Employee> getAllEmployee(String jno);
 
     //主要用于新建一个岗位
     void insertJob(Job job);

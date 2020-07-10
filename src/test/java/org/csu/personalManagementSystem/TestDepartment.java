@@ -1,6 +1,7 @@
 package org.csu.personalManagementSystem;
 
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.service.DepartmentService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,18 @@ public class TestDepartment {
         }
     }
 
+    //测试查询部门下属员工
+    @Test
+    void testGetAllEmployee(){
+
+        String dno = "2";
+        List<Employee> list = departmentService.getAllEmployee(dno);
+        for (Employee obj:list
+             ) {
+            System.out.println(obj.getName());
+
+        }
+    }
 
     //测试新建部门
     @Test

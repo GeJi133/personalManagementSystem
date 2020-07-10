@@ -67,7 +67,7 @@ public class JobController {
         }
 
         else if(type.equals("description")){
-            List<Job> jobs = jobService.getDepartmentByDescription (message);
+            List<Job> jobs = jobService.getJobByDescription (message);
             appResult = ResultBuilder.successData(ResultCode.OK,jobs);
         }
 

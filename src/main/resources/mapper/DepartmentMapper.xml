@@ -46,6 +46,17 @@
     </select>
 
 
+    <select id="getAllEmployee" parameterType="string" resultType="Employee">
+        SELECT
+        id,name,sex,employee.department,career,position,jobs,language,family,startTime,endTime
+        FROM
+        department,employee
+        WHERE department.department = employee.department
+        <if test="dno != null and dno!=''">
+            AND department.dno = #{dno}
+        </if>
+    </select>
+
 
     <insert id="insertDepartment" parameterType="Department">
     INSERT INTO department
@@ -53,6 +64,7 @@
     VALUES
       (#{dno}, #{department}, #{business})
   </insert>
+
 
     <update id="updateDepartment" parameterType="Department">
         UPDATE department
@@ -62,6 +74,7 @@
         </set>
         WHERE dno = #{dno}
     </update>
+
 
     <delete id="deleteDepartment" parameterType="string">
     delete from department
