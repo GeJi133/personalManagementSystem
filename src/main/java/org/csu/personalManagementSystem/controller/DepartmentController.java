@@ -2,11 +2,9 @@ package org.csu.personalManagementSystem.controller;
 
 import org.csu.personalManagementSystem.domain.AppResult;
 import org.csu.personalManagementSystem.domain.Department;
-import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.DepartmentService;
-import org.csu.personalManagementSystem.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +17,9 @@ import java.util.List;
 public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
-    @Autowired
-    JobService jobService;
+
+
+    //查询所有部门
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Department>> getDepartments(){
         AppResult<List<Department>> appResult = new AppResult<>();
@@ -30,24 +29,72 @@ public class DepartmentController {
     }
 
 
-    @GetMapping(value = "/{dno}", produces = "application/Json;charset=UTF-8")
-    public AppResult<Department> viewDepartment(@PathVariable("dno") String dno){
-        AppResult<Department> appResult = new AppResult<>();
-        Department department = departmentService.getDepartmentByDno (dno);
-        appResult = ResultBuilder.successData(ResultCode.OK,department);
+    //查询部门（条件查询，type = dno，根据部门编号查询， type = department ，根据部门名称模糊查询）
+    @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Department>>  viewDepartment(@PathVariable("message") String message,
+                                                @RequestParam(value = "type", required = false) String type ){
+        AppResult<List<Department>> appResult = new AppResult<>();
+        if(type.equals("dno")){
+
+            List<Department> departments = departmentService.getDepartmentByDno (message);
+            appResult = ResultBuilder.successData(ResultCode.OK,departments);
+        }
+
+        else if(type.equals("department")){
+
+            List<Department> departments = departmentService.getDepartmentByDepartment (message);
+            appResult = ResultBuilder.successData(ResultCode.OK,departments);
+        }
+
+        else if(type.equals("business")){
+            List<Department> departments = departmentService.getDepartmentByBusiness (message);
+            appResult = ResultBuilder.successData(ResultCode.OK,departments);
+        }
+
+        else appResult = ResultBuilder.fail(ResultCode.BadRequest);
 
         return appResult;
     }
 
-    @GetMapping(value = "/{dno}/jobs", produces="application/Json;charset=UTF-8" )
-    public AppResult<List<Job>> viewjob(@PathVariable("dno") String dno){
-        AppResult<List<Department>> appResult = new AppResult<>();
+  /*  @GetMapping(value = "/{department}", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Department>> viewDepartmentByDepartment(@PathVariable("department") String department){
+        AppResult<List<Department>>appResult = new AppResult<>();
+        List<Department> departments = departmentService.getDepartmentByDepartment (department);
+        appResult = ResultBuilder.successData(ResultCode.OK,departments);
 
-       List<Job> jobs = ;
+        return appResult;
+    }*/
 
-            appResult = ResultBuilder.successData(ResultCode.OK,jobs);
+    //新增一个部门
+    @PostMapping(value = "/",produces="application/Json;charset=UTF-8")
+    @ResponseBody
+    public AppResult<String> insertDepartment(@RequestBody Department department){
+        AppResult<String> appResult = new AppResult<>();
+        departmentService.insertDep(department);
+        appResult = ResultBuilder.successNoData(ResultCode.Handled);
+
+        return appResult;
+    }
+
+    //修改部门
+    @PutMapping(value = "/",produces="application/Json;charset=UTF-8")
+    public AppResult<String> updateDepartment(@RequestBody Department department){
+        AppResult<String> appResult = new AppResult<>();
+        departmentService.updateDep(department);
+        appResult = ResultBuilder.successNoData(ResultCode.Handled);
+
+        return appResult;
+    }
+
+    //删除部门
+    @DeleteMapping(value = "/",produces="application/Json;charset=UTF-8")
+    public AppResult<String> deleteDepartment(@RequestBody String dno){
+        AppResult<String> appResult = new AppResult<>();
+        departmentService.deleteDep(dno);
+        appResult = ResultBuilder.successNoData(ResultCode.Handled);
 
         return appResult;
     }
 
 }
+

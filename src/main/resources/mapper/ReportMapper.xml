@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.ReportMapper">
+
+    <select id="getAllLeaving" resultType="Leaving">
+        SELECT
+        *
+        FROM
+        leaving
+    </select>
+
+
+    <select id="getAllTransfer" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+    </select>
+</mapper>

@@ -15,7 +15,7 @@ public class TestDepartment {
     @Autowired
     DepartmentService departmentService;
 
-
+    //查询所有部门
     @Test
     void testGetAll(){
 
@@ -25,6 +25,19 @@ public class TestDepartment {
             System.out.println("dno:"+obj.getDno()+"    department:"+obj.getDepartment()+"   business:"+obj.getBusiness());
         }
     }
+
+
+    //查询部门编号
+    @Test
+    void testGetDepartmentByDno(){
+        String string="1";
+        List<Department> list = departmentService.getDepartmentByDno(string);
+        for (Object  obj:list
+        ) {
+            System.out.println(((Department)obj).getDepartment());
+        }
+    }
+    //测试模糊查询部门名字
     @Test
     void testGetDepartmentByDepartment() {
 
@@ -36,12 +49,28 @@ public class TestDepartment {
         }
     }
 
+
+    //测试模糊查询部门描述
+    @Test
+    void testGetDepartmentByBusiness() {
+
+        String string="资源";
+        List<Department> list = departmentService.getDepartmentByBusiness(string);
+        for (Object  obj:list
+        ) {
+            System.out.println(((Department)obj).getDepartment());
+        }
+    }
+
+
+    //测试新建部门
     @Test
     void testInsertDep(){
         Department department = new Department("6","商务部","负责与客户的接待与联络工作");
         departmentService.insertDep(department);
     }
 
+    //测试删除部门
     @Test
     void testDeleteDep(){
         departmentService.deleteDep("6");

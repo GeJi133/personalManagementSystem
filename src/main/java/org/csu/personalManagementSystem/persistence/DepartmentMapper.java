@@ -13,10 +13,13 @@ public interface DepartmentMapper {
     List<Department> getAll();
 
     //主要用于定位部门，可以定位的条件包括部门编号
-    Department getDepartmentByDno(String dno);
+    List<Department> getDepartmentByDno(String dno);
 
    //通过模糊查找获取相关的部门信息,部门名
     List<Department> getDepartmentByDepartment(@Param("department") String department);
+
+    //通过模糊查找获取相关的部门信息,部门描述
+    List<Department> getDepartmentByBusiness(@Param("business") String department);
 
     //查询部门下属员工,还未实现
 

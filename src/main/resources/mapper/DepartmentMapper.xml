@@ -6,29 +6,46 @@
 
     <select id="getAll" resultType="Department">
         SELECT
-        *
+        dno,department.department,business,employee.name as manager
         FROM
-        department
+        department left join employee on department.mid = employee.id
     </select>
+
 
     <select id="getDepartmentByDno" parameterType="string" resultType="Department">
         SELECT
-          *
+        dno,department.department,business,employee.name as manager
         FROM
-        department
+        department left join employee on department.mid = employee.id
         WHERE
         department.dno = #{dno}
   </select>
 
+
     <select id="getDepartmentByDepartment" parameterType="string" resultType="Department">
-        SELECT *
+        SELECT
+        dno,department.department,business,employee.name as manager
         FROM
-        department
+        department left join employee on department.mid = employee.id
         WHERE 1=1
         <if test="department != null and department!=''">
-            AND (department like concat('%',#{department},'%'))
+        AND (department.department like concat('%',#{department},'%'))
         </if>
   </select>
+
+
+    <select id="getDepartmentByBusiness" parameterType="string" resultType="Department">
+        SELECT
+        dno,department.department,business,employee.name as manager
+        FROM
+        department left join employee on department.mid = employee.id
+        WHERE 1=1
+        <if test="business != null and business!=''">
+            AND (department.business like concat('%',#{business},'%'))
+        </if>
+    </select>
+
+
 
     <insert id="insertDepartment" parameterType="Department">
     INSERT INTO department

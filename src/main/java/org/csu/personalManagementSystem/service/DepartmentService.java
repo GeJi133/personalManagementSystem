@@ -18,10 +18,11 @@ public class DepartmentService {
     }
 
     //主要用于定位部门，可以定位的条件包括部门编号
-    public  Department getDepartmentByDno(String Dno){
+    public  List<Department> getDepartmentByDno(String Dno){
 
         return DepartmentMapper.getDepartmentByDno(Dno);
     }
+
 
     //通过模糊查找获取相关的部门信息,部门名
     public List<Department> getDepartmentByDepartment(String department){
@@ -29,7 +30,16 @@ public class DepartmentService {
         return DepartmentMapper.getDepartmentByDepartment(department);
     }
 
+
+    //通过模糊查找获取相关的部门信息,部门名
+    public List<Department> getDepartmentByBusiness(String business){
+
+        return DepartmentMapper.getDepartmentByBusiness(business);
+    }
+
+
     //查询部门下属员工,还未实现
+
 
     //主要用于新建一个部门
     public void insertDep(Department department) {

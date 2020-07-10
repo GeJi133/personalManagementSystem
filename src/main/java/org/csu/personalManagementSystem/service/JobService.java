@@ -18,7 +18,7 @@ public class JobService {
     }
 
     //主要用于定位岗位，可以定位的条件包括岗位编号
-    public  Job getJobByDno(String jno){
+    public  List<Job>  getJobByDno(String jno){
 
         return JobMapper.getJobByDno(jno);
     }
@@ -26,6 +26,11 @@ public class JobService {
     //通过模糊查找获取相关的岗位信息,岗位名
     public List<Job> getJobByJob(String Job){
         return JobMapper.getJobByJob(Job);
+    }
+
+    //通过模糊查找获取相关的岗位信息,岗位描述
+    public List<Job> getDepartmentByDescription(String description){
+        return JobMapper.getDepartmentByDescription(description);
     }
 
     //查询岗位下属员工,还未实现

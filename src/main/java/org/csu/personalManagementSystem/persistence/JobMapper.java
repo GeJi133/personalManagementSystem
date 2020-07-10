@@ -1,6 +1,7 @@
 package org.csu.personalManagementSystem.persistence;
 
 import org.apache.ibatis.annotations.Param;
+import org.csu.personalManagementSystem.domain.Department;
 import org.csu.personalManagementSystem.domain.Job;
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +14,13 @@ public interface JobMapper {
     List<Job> getAll();
 
     //主要用于定位岗位，可以定位的条件包括岗位编号
-    Job getJobByDno(String jno);
+    List<Job> getJobByDno(String jno);
 
     //通过模糊查找获取相关的岗位信息,岗位名
     List<Job> getJobByJob(@Param("job") String job);
+
+    //通过模糊查找获取相关的岗位信息,岗位名
+    List<Job> getDepartmentByDescription(@Param("description") String description);
 
     //查询岗位下属员工,还未实现
 

@@ -16,6 +16,8 @@ public class TestJob {
     @Autowired
     JobService jobService;
 
+
+    //测试模糊查询岗位名字
     @Test
     void TestGetJobByJob(){
 
@@ -26,5 +28,20 @@ public class TestJob {
                 System.out.println(((Job)obj).getJob()+","+((Job)obj).getDescription());
             }
 
+    }
+
+
+    //测试新建岗位
+    @Test
+    void testInsertJob(){
+        Job job = new Job("43","4","负责攻克技术难题","资深技术专员");
+        jobService.insertJob(job);
+    }
+
+    //测试修改岗位
+    @Test
+    void testUpdateJob(){
+        Job job = new Job("43","4","负责攻克技术难题,进行项目评估","资深技术专员");
+        jobService.updateJob(job);
     }
 }
