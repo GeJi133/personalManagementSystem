@@ -73,9 +73,9 @@
 
     <insert id="insertDepartment" parameterType="Department">
     INSERT INTO department
-      (dno, department, business,performance)
+      (dno, department, business,mid,performance)
     VALUES
-      (#{dno}, #{department}, #{business},#{performance})
+      (#{dno}, #{department}, #{business},#{mid},#{performance})
   </insert>
 
 
@@ -84,6 +84,7 @@
         <set>
             department=#{department},
             business=#{business},
+            mid=#{mid},
             performance=#{performance}
         </set>
         WHERE dno = #{dno}

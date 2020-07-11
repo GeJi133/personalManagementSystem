@@ -18,4 +18,20 @@
         FROM
         transfer
     </select>
+
+
+    <select id="getAllLeavingByTime" resultType="Leaving">
+       SELECT
+        *
+        FROM
+        leaving
+        where 1 = 1
+       <if test="startData != null and startData!=''" >
+        AND  date_format(leavingtime,'%Y-%m-%d') >=#{startData}
+      </if>
+        <if test="endData != null and endData!=''" >
+         AND  date_format(leavingtime,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
 </mapper>

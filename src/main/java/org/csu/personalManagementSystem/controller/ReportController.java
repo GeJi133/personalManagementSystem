@@ -10,10 +10,7 @@ import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.csu.personalManagementSystem.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,18 @@ public class ReportController {
     public AppResult<List<Leaving>> getLeavings(){
         AppResult<List<Leaving>> appResult = new AppResult<>();
         List<Leaving> leavings = reportService.getAllLeaving();
+        appResult = ResultBuilder.successData(ResultCode.OK,leavings);
+
+        return appResult;
+    }
+
+
+    //查询一段时间内的离职情况
+    @GetMapping(value = "/leavings/time", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Leaving>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
+                                                @RequestParam(value = "endData", required = false) String endData){
+        AppResult<List<Leaving>> appResult = new AppResult<>();
+        List<Leaving> leavings = reportService.getAllLeavingByTime(startData,endData);
         appResult = ResultBuilder.successData(ResultCode.OK,leavings);
 
         return appResult;

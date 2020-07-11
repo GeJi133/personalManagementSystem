@@ -23,4 +23,10 @@ public class ReportService {
     public List<Transfer> getAllTransfer(){
         return ReportMapper.getAllTransfer();
     }
+
+    //查询一段时间内的离职信息
+    public List<Leaving>   getAllLeavingByTime(String startData,String endData){
+        return ReportMapper.getAllLeavingByTime(startData,endData);
+    }
+
 }
