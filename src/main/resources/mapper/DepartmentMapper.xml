@@ -14,7 +14,7 @@
 
     <select id="getDepartmentByDno" parameterType="string" resultType="Department">
         SELECT
-        dno,department.department,business,employee.name as manager
+        dno,department.department,business,employee.name as manager,performance
         FROM
         department left join employee on department.mid = employee.id
         WHERE
@@ -24,7 +24,7 @@
 
     <select id="getDepartmentByDepartment" parameterType="string" resultType="Department">
         SELECT
-        dno,department.department,business,employee.name as manager
+        dno,department.department,business,employee.name as manager,performance
         FROM
         department left join employee on department.mid = employee.id
         WHERE 1=1
@@ -36,7 +36,7 @@
 
     <select id="getDepartmentByBusiness" parameterType="string" resultType="Department">
         SELECT
-        dno,department.department,business,employee.name as manager
+        dno,department.department,business,employee.name as manager,performance
         FROM
         department left join employee on department.mid = employee.id
         WHERE 1=1
@@ -73,17 +73,19 @@
 
     <insert id="insertDepartment" parameterType="Department">
     INSERT INTO department
-      (dno, department, business)
+      (dno, department, business,mid,performance)
     VALUES
-      (#{dno}, #{department}, #{business})
+      (#{dno}, #{department}, #{business},#{mid},#{performance})
   </insert>
 
 
     <update id="updateDepartment" parameterType="Department">
         UPDATE department
         <set>
-            <if test="department!=null and department!=''">department=#{department},</if>
-            <if test="business!=null and business!=''">business=#{business},</if>
+            department=#{department},
+            business=#{business},
+            mid=#{mid},
+            performance=#{performance}
         </set>
         WHERE dno = #{dno}
     </update>

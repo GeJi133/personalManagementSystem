@@ -40,6 +40,10 @@ public class Department {
         return performance;
     }
 
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
     public void setPerformance(String performance) {
         this.performance = performance;
     }
