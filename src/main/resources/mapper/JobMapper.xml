@@ -51,6 +51,7 @@
         <if test="jno != null and jno!=''">
             AND job.jno = #{jno}
         </if>
+            And employee.POSITION in ( 1 , 2)
     </select>
 
     <insert id="insertJob" parameterType="Job">

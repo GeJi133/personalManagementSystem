@@ -39,7 +39,7 @@ public class TestJob {
         List<Employee> list = jobService.getAllEmployee(jno);
         for (Employee obj:list
         ) {
-            System.out.println(obj.getName() + "," + obj.getJobs());
+            System.out.println(obj.getName() + "," + obj.getJobs() + "," + obj.getPosition());
 
         }
     }

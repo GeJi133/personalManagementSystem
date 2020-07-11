@@ -30,7 +30,8 @@
         </if>
     </select>
 
-    <select id="getDepartmentByDescription" parameterType="string" resultType="Job">
+
+    <select id="getJobByDescription" parameterType="string" resultType="Job">
         SELECT *
         FROM
         job
@@ -40,6 +41,18 @@
         </if>
     </select>
 
+
+    <select id="getAllEmployee" parameterType="string" resultType="Employee">
+        SELECT
+        id,name,sex,employee.department,career,position,jobs,language,family,startTime,endTime
+        FROM
+        job,employee
+        WHERE job.job = employee.jobs
+        <if test="jno != null and jno!=''">
+            AND job.jno = #{jno}
+        </if>
+            And employee.POSITION in ( 1 , 2)
+    </select>
 
     <insert id="insertJob" parameterType="Job">
     INSERT INTO job

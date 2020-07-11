@@ -2,6 +2,7 @@ package org.csu.personalManagementSystem;
 
 import org.csu.personalManagementSystem.domain.Department;
 import org.csu.personalManagementSystem.domain.Employee;
+import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.service.DepartmentService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class TestDepartment {
         List<Department> list =departmentService.getAll();
         for (Department  obj:list
         ) {
-            System.out.println("dno:"+obj.getDno()+"    department:"+obj.getDepartment()+"   business:"+obj.getBusiness());
+            System.out.println("dno:"+obj.getDno()+"    department:"+obj.getDepartment()+"   business:"+obj.getBusiness() + "   performance:" + obj.getPerformance());
         }
     }
 
@@ -63,19 +64,29 @@ public class TestDepartment {
         }
     }
 
-    //测试查询部门下属员工
+    //测试查询部门下属员工,positon = 1 表示正式员工  = 2 表示 管理员
     @Test
     void testGetAllEmployee(){
 
-        String dno = "2";
+        String dno = "1";
         List<Employee> list = departmentService.getAllEmployee(dno);
         for (Employee obj:list
              ) {
-            System.out.println(obj.getName());
+            System.out.println(obj.getName()+" , " + obj.getPosition());
 
         }
     }
+    //测试查询部门下属岗位
+    @Test
+    void testGetAllJob(){
+        String dno = "1";
+        List<Job> list = departmentService.getAllJob(dno);
+        for (Job obj:list
+        ) {
+            System.out.println(obj.getJno() + "," + obj.getDno() + "," + obj.getDescription() + " ," + obj.getJob());
 
+        }
+    }
     //测试新建部门
     @Test
     void testInsertDep(){

@@ -23,7 +23,7 @@ public interface JobMapper {
     //通过模糊查找获取相关的岗位信息,岗位名
     List<Job> getJobByDescription(@Param("description") String description);
 
-    //查询岗位下属员工
+    //主要用于查询指定岗位当前在职员工信息
     List<Employee> getAllEmployee(String jno);
 
     //主要用于新建一个岗位

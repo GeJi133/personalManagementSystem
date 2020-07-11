@@ -3,6 +3,7 @@ package org.csu.personalManagementSystem.persistence;
 import org.apache.ibatis.annotations.Param;
 import org.csu.personalManagementSystem.domain.Department;
 import org.csu.personalManagementSystem.domain.Employee;
+import org.csu.personalManagementSystem.domain.Job;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public interface DepartmentMapper {
     //通过模糊查找获取相关的部门信息,部门描述
     List<Department> getDepartmentByBusiness(@Param("business") String department);
 
-    //查询部门下属员工
+    //主要用于查询指定部门当前在职员工信息
     List<Employee> getAllEmployee(String dno);
+
+    //主要用于查询指定部门的岗位信息
+    List<Job> getAllJob(String dno);
 
     //主要用于新建一个部门
     void insertDepartment(Department department);

@@ -34,7 +34,7 @@ public class JobService {
         return JobMapper.getJobByDescription(description);
     }
 
-    //查询岗位下属员工
+    //主要用于查询指定岗位当前在职员工信息
     public List<Employee> getAllEmployee(String jno){
 
         return JobMapper.getAllEmployee(jno);

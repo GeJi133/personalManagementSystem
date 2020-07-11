@@ -3,6 +3,7 @@ package org.csu.personalManagementSystem.controller;
 import org.csu.personalManagementSystem.domain.AppResult;
 import org.csu.personalManagementSystem.domain.Department;
 import org.csu.personalManagementSystem.domain.Employee;
+import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.DepartmentService;
@@ -67,12 +68,21 @@ public class DepartmentController {
     }*/
 
 
-    //查询部门下属员工
+    //主要用于查询指定部门当前在职员工信息
     @GetMapping(value = "/employees/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Employee>> getEmployees(@PathVariable("dno") String dno){
         AppResult<List<Employee>> appResult = new AppResult<>();
         List<Employee> employees = departmentService.getAllEmployee(dno);
         appResult = ResultBuilder.successData(ResultCode.OK,employees);
+        return appResult;
+    }
+
+    //主要用于查询指定部门的岗位信息
+    @GetMapping(value = "/jobs/{dno}", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Job>> getJobs(@PathVariable("dno") String dno){
+        AppResult<List<Job>> appResult = new AppResult<>();
+        List<Job> jobs = departmentService.getAllJob(dno);
+        appResult = ResultBuilder.successData(ResultCode.OK,jobs);
         return appResult;
     }
 

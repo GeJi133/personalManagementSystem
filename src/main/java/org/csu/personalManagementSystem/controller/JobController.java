@@ -2,6 +2,7 @@ package org.csu.personalManagementSystem.controller;
 
 import org.csu.personalManagementSystem.domain.AppResult;
 import org.csu.personalManagementSystem.domain.Department;
+import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
@@ -75,6 +76,16 @@ public class JobController {
 
         return appResult;
     }
+
+    //主要用于查询指定岗位当前在职员工信息
+    @GetMapping(value = "/employees/{jno}", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Employee>> getEmployees(@PathVariable("jno") String jno){
+        AppResult<List<Employee>> appResult = new AppResult<>();
+        List<Employee> employees = jobService.getAllEmployee(jno);
+        appResult = ResultBuilder.successData(ResultCode.OK,employees);
+        return appResult;
+    }
+
 
 
 

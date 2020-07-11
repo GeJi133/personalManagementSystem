@@ -6,7 +6,7 @@
 
     <select id="getAll" resultType="Department">
         SELECT
-        dno,department.department,business,employee.name as manager
+        dno,department.department,business,employee.name as manager,performance
         FROM
         department left join employee on department.mid = employee.id
     </select>
@@ -55,6 +55,19 @@
         <if test="dno != null and dno!=''">
             AND department.dno = #{dno}
         </if>
+            AND employee.position in ( 1 , 2)
+    </select>
+
+    <select id="getAllJob" parameterType="string" resultType="Job">
+        SELECT
+        jno,job.dno,description,job
+        FROM
+        department,job
+        WHERE department.dno = job.dno
+        <if test="dno != null and dno!=''">
+            AND department.dno = #{dno}
+        </if>
+
     </select>
 
 
