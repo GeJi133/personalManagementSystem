@@ -19,14 +19,19 @@ public class ReportService {
         return ReportMapper.getAllLeaving();
     }
 
+//    //查询一段时间内指定部门的离职员工信息
+//    public List<Leaving> getAllLeavingByDno(String Dno){
+//        return ReportMapper.getAllLeavingByDno(Dno);
+//    }
+
     //获取所有调动情况
     public List<Transfer> getAllTransfer(){
         return ReportMapper.getAllTransfer();
     }
 
     //查询一段时间内的离职信息
-    public List<Leaving>   getAllLeavingByTime(String startData,String endData){
-        return ReportMapper.getAllLeavingByTime(startData,endData);
+    public List<Leaving>   getAllLeavingByDnoAndTime(String dno,String startData,String endData){
+        return ReportMapper.getAllLeavingByDnoAndTime(dno,startData,endData);
     }
 
 }

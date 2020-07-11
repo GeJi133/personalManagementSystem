@@ -12,11 +12,15 @@ public interface ReportMapper {
     //查询全部离职信息
     List<Leaving> getAllLeaving();
 
+//    //查询一段时间内指定部门的离职员工信息
+//    List<Leaving> getAllLeavingByDno(String Dno);
+
     //查询全部调动信息
     List<Transfer> getAllTransfer();
 
-    //查询一段时间内的离职信息
-    List<Leaving>   getAllLeavingByTime(String startData,String endData);
+    //查询一段时间内指定部门的离职员工信息
+    List<Leaving>   getAllLeavingByDnoAndTime(String dno, String startData,String endData);
 
-    //查询一段时间内的新聘员工
+    //查询一段时间内指定部门的的新聘员工
+    //查询一段时间内指定部门的离职员工信息
 }

@@ -11,6 +11,15 @@
         leaving
     </select>
 
+<!--    <select id="getAllLeavingByDno" resultType="Leaving">-->
+<!--        SELECT-->
+<!--        *-->
+<!--        FROM-->
+<!--        department left join leaving on department.department = leaving.department-->
+<!--        where-->
+<!--        department.dno=#{dno}-->
+<!--    </select>-->
+
 
     <select id="getAllTransfer" resultType="Transfer">
         SELECT
@@ -20,12 +29,12 @@
     </select>
 
 
-    <select id="getAllLeavingByTime" resultType="Leaving">
+    <select id="getAllLeavingByDnoAndTime" resultType="Leaving">
        SELECT
-        *
+        leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason
         FROM
-        leaving
-        where 1 = 1
+        department left join leaving on department.department = leaving.department
+        where department.dno = #{dno}
        <if test="startData != null and startData!=''" >
         AND  date_format(leavingtime,'%Y-%m-%d') >=#{startData}
       </if>

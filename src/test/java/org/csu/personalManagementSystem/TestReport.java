@@ -25,17 +25,31 @@ public class TestReport {
     }
 
 
-    @Test
+
     //查询一段时间内的离职信息
+    @Test
     void testGetAllLeavingByTime(){
-        String startData = "2020-07-02";
+        String dno = "2";
+        String startData = "2020-07-01";
         String endData = null;
-        List<Leaving> leavings = reportService.getAllLeavingByTime(startData,endData);
+        List<Leaving> leavings = reportService.getAllLeavingByDnoAndTime(dno,startData,endData);
         for (Leaving obj:leavings
              ) {
-            System.out.println(obj.getId() + "  " + obj.getLeavingTime() + "    "+obj.getLeavingReason());
+            System.out.println(obj.getId() + "  " + obj.getLeavingTime() + "    "+obj.getLeavingTime()+"    "+obj.getLeavingReason());
 
         }
 
     }
+
+//    //查询一段时间内指定部门的离职员工信息
+//    @Test
+//    void testGetAllLeavingByDno(){
+//        String dno = "2";
+//        List<Leaving> leavings = reportService.getAllLeavingByDno(dno);
+//        for (Leaving obj:leavings
+//        ) {
+//            System.out.println(obj.getId() + "  " + obj.getDepartment() + "    "+obj.getLeavingReason());
+//
+//        }
+//    }
 }
