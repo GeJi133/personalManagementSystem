@@ -33,5 +33,8 @@ public class ReportService {
     public List<Leaving>   getAllLeavingByDnoAndTime(String dno,String startData,String endData){
         return ReportMapper.getAllLeavingByDnoAndTime(dno,startData,endData);
     }
-
+    //查询一段时间内的所有调动信息
+    public  List<Transfer> getAllTransferByTime(String startData,String endData) {
+        return ReportMapper.getAllTransferByTime(startData,endData);
+    }
 }

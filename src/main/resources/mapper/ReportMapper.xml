@@ -29,6 +29,21 @@
     </select>
 
 
+    <select id="getAllTransferByTime" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+        where 1=1
+        <if test="startData != null and startData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+
     <select id="getAllLeavingByDnoAndTime" resultType="Leaving">
        SELECT
         leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason
@@ -42,5 +57,7 @@
          AND  date_format(leavingtime,'%Y-%m-%d') &lt;= #{endData}
         </if>
     </select>
+
+
 
 </mapper>

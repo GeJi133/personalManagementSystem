@@ -1,6 +1,7 @@
 package org.csu.personalManagementSystem;
 
 import org.csu.personalManagementSystem.domain.Leaving;
+import org.csu.personalManagementSystem.domain.Transfer;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.csu.personalManagementSystem.service.ReportService;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class TestReport {
 
 
 
-    //查询一段时间内的离职信息
+    //查询一段时间内指定部门的离职员工信息
     @Test
     void testGetAllLeavingByTime(){
         String dno = "2";
@@ -52,4 +53,18 @@ public class TestReport {
 //
 //        }
 //    }
+
+    //查询一段时间内部门调用信息
+    @Test
+    void testGetAllTransferByTime(){
+        String startData = "2020-07-18";
+        String endData = null;
+        List<Transfer> transfers = reportService.getAllTransferByTime(startData,endData);
+        for (Transfer obj:transfers
+        ) {
+            System.out.println(obj.getId() + "  " + obj.getDepartmentBefore() + "    "+obj.getDepartmentAfter()+"    "+obj.getTransferTime());
+
+        }
+
+    }
 }

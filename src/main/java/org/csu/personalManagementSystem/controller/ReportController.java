@@ -60,4 +60,14 @@ public class ReportController {
 
         return appResult;
     }
+    //查询一段时间内调动情况
+    @GetMapping(value = "/transfers/time", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Transfer>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
+                                                      @RequestParam(value = "endData", required = false) String endData){
+        AppResult<List<Transfer>> appResult = new AppResult<>();
+        List<Transfer> leavings = reportService.getAllTransferByTime(startData,endData);
+        appResult = ResultBuilder.successData(ResultCode.OK,leavings);
+
+        return appResult;
+    }
 }
