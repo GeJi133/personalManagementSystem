@@ -37,4 +37,18 @@ public class ReportService {
     public  List<Transfer> getAllTransferByTime(String startData,String endData) {
         return ReportMapper.getAllTransferByTime(startData,endData);
     }
+
+    /*
+     人事月报
+  */
+    //按年月查询所有调动信息
+    public List<Transfer> getAllTransferByMonth(String year,String month){
+        return ReportMapper.getAllTransferByMonth(year,month);
+    }
+
+    //按年月查询所有离职信息
+    public List<Leaving> getAllLeavingByMonth(String year,String month){
+        return ReportMapper.getAllLeavingByMonth(year,month);
+    }
+
 }

@@ -26,4 +26,14 @@ public interface ReportMapper {
 
     //查询一段时间内指定部门的的新聘员工
     //查询一段时间内指定部门的离职员工信息
+
+    /*
+        人事月报
+     */
+    //按年月查询所有调动信息
+    List<Transfer> getAllTransferByMonth(String year,String month);
+
+    //按年月查询所有离职员工信息
+    List<Leaving> getAllLeavingByMonth(String year,String month);
+
 }

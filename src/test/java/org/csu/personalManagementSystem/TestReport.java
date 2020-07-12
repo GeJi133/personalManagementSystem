@@ -54,7 +54,7 @@ public class TestReport {
 //        }
 //    }
 
-    //查询一段时间内部门调用信息
+    //测试查询一段时间内部门调用信息
     @Test
     void testGetAllTransferByTime(){
         String startData = "2020-07-18";
@@ -66,5 +66,31 @@ public class TestReport {
 
         }
 
+    }
+
+    // 测试按年月查询所有调动信息
+    @Test
+    void testGetAllTransferByMonth(){
+        String year = "2020";
+        String month = null;
+        List<Transfer> transfers = reportService.getAllTransferByMonth(year,month);
+        for (Transfer obj:transfers
+        ) {
+            System.out.println(obj.getId() + "  " + obj.getDepartmentBefore() + "    "+obj.getDepartmentAfter()+"    "+obj.getTransferTime());
+
+        }
+    }
+
+    // 测试按年月查询所有调动信息
+    @Test
+    void testGetAllLeavingByMonth(){
+        String year = "2020";
+        String month = null;
+        List<Leaving> leavings = reportService.getAllLeavingByMonth(year,month);
+        for (Leaving obj:leavings
+        ) {
+            System.out.println(obj.getId() + "  " + obj.getLeavingTime() + "    "+obj.getLeavingTime()+"    "+obj.getLeavingReason());
+
+        }
     }
 }

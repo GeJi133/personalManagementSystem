@@ -55,8 +55,8 @@ public class ReportController {
     @GetMapping(value = "/transfers", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Transfer>> getTransfers(){
         AppResult<List<Transfer>> appResult = new AppResult<>();
-        List<Transfer> leavings = reportService.getAllTransfer();
-        appResult = ResultBuilder.successData(ResultCode.OK,leavings);
+        List<Transfer> transfers = reportService.getAllTransfer();
+        appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
         return appResult;
     }
@@ -65,9 +65,34 @@ public class ReportController {
     public AppResult<List<Transfer>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
                                                       @RequestParam(value = "endData", required = false) String endData){
         AppResult<List<Transfer>> appResult = new AppResult<>();
-        List<Transfer> leavings = reportService.getAllTransferByTime(startData,endData);
-        appResult = ResultBuilder.successData(ResultCode.OK,leavings);
+        List<Transfer> transfers = reportService.getAllTransferByTime(startData,endData);
+        appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
+        return appResult;
+    }
+
+
+      /*
+        人事月报
+     */
+    //按年月查询所有调动信息
+      @GetMapping(value = "/transfers/month", produces = "application/Json;charset=UTF-8")
+      public AppResult<List<Transfer>> getAllTransferByMonth(@RequestParam(value = "year", required = false) String year,
+                                                         @RequestParam(value = "month", required = false) String month){
+          AppResult<List<Transfer>> appResult = new AppResult<>();
+          List<Transfer> transfers = reportService.getAllTransferByMonth(year,month);
+          appResult = ResultBuilder.successData(ResultCode.OK,transfers);
+
+          return appResult;
+      }
+
+    //按年月查询所有离职信息
+    @GetMapping(value = "/leavings/month", produces = "application/Json;charset=UTF-8")
+    public AppResult<List<Leaving>> getAllLeavingByMonth(@RequestParam(value = "year", required = false) String year,
+                                                           @RequestParam(value = "month", required = false) String month){
+        AppResult<List<Leaving>> appResult = new AppResult<>();
+        List<Leaving> leavings = reportService.getAllLeavingByMonth(year,month);
+        appResult = ResultBuilder.successData(ResultCode.OK,leavings);
         return appResult;
     }
 }

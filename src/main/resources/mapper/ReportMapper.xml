@@ -58,6 +58,28 @@
         </if>
     </select>
 
+    <select id="getAllTransferByMonth" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+        where
+        date_format(transferTime,'%Y') =#{year}
+        <if test="month != null and month!=''" >
+         AND  date_format(transferTime,'%m') = #{month}
+        </if>
+    </select>
 
 
+    <select id="getAllLeavingByMonth" resultType="Leaving">
+        SELECT
+        *
+        FROM
+        leaving
+        where
+        date_format(leavingtime,'%Y') = #{year}
+        <if test="month != null and month!=''" >
+            AND  date_format(leavingtime,'%m') = #{month}
+        </if>
+    </select>
 </mapper>
