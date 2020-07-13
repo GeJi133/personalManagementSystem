@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.ReportMapper">
+
+    <select id="getAllLeaving" resultType="Leaving">
+        SELECT
+        *
+        FROM
+        leaving
+    </select>
+
+<!--    <select id="getAllLeavingByDno" resultType="Leaving">-->
+<!--        SELECT-->
+<!--        *-->
+<!--        FROM-->
+<!--        department left join leaving on department.department = leaving.department-->
+<!--        where-->
+<!--        department.dno=#{dno}-->
+<!--    </select>-->
+
+
+    <select id="getAllTransfer" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+    </select>
+
+
+    <select id="getAllTransferByTime" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+        where 1=1
+        <if test="startData != null and startData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+
+    <select id="getAllLeavingByDnoAndTime" resultType="Leaving">
+       SELECT
+        leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason
+        FROM
+        department left join leaving on department.department = leaving.department
+        where department.dno = #{dno}
+       <if test="startData != null and startData!=''" >
+        AND  date_format(leavingtime,'%Y-%m-%d') >=#{startData}
+      </if>
+        <if test="endData != null and endData!=''" >
+         AND  date_format(leavingtime,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+    <select id="getAllTransferByMonth" resultType="Transfer">
+        SELECT
+        *
+        FROM
+        transfer
+        where
+        date_format(transferTime,'%Y') =#{year}
+        <if test="month != null and month!=''" >
+         AND  date_format(transferTime,'%m') = #{month}
+        </if>
+    </select>
+
+
+    <select id="getAllLeavingByMonth" resultType="Leaving">
+        SELECT
+        *
+        FROM
+        leaving
+        where
+        date_format(leavingtime,'%Y') = #{year}
+        <if test="month != null and month!=''" >
+            AND  date_format(leavingtime,'%m') = #{month}
+        </if>
+    </select>
+</mapper>

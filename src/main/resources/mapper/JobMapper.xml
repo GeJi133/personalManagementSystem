@@ -30,11 +30,35 @@
         </if>
     </select>
 
+
+    <select id="getJobByDescription" parameterType="string" resultType="Job">
+        SELECT *
+        FROM
+        job
+        WHERE 1=1
+        <if test="description != null and description!=''">
+            AND (description like concat('%',#{description},'%'))
+        </if>
+    </select>
+
+
+    <select id="getAllEmployee" parameterType="string" resultType="Employee">
+        SELECT
+        id,name,sex,employee.department,career,position,jobs,language,family,startTime,endTime
+        FROM
+        job,employee
+        WHERE job.job = employee.jobs
+        <if test="jno != null and jno!=''">
+            AND job.jno = #{jno}
+        </if>
+            And employee.POSITION in ( 1 , 2)
+    </select>
+
     <insert id="insertJob" parameterType="Job">
     INSERT INTO job
-      (jno, job, description)
+      (jno, dno,job, description)
     VALUES
-      (#{jno}, #{job}, #{description})
+      (#{jno},#{dno}, #{job}, #{description})
   </insert>
 
     <update id="updateJob" parameterType="Job">
@@ -42,6 +66,7 @@
         <set>
             <if test="job!=null and job!=''">job=#{job},</if>
             <if test="description!=null and description!=''">description=#{description},</if>
+            <if test="dno!=null and dno!=''">dno=#{dno}</if>
         </set>
         WHERE jno = #{jno}
     </update>
