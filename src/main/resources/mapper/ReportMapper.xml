@@ -9,6 +9,8 @@
         *
         FROM
         leaving
+         where
+        status = 1
     </select>
 
 <!--    <select id="getAllLeavingByDno" resultType="Leaving">-->
@@ -25,7 +27,9 @@
         SELECT
         *
         FROM
-        transfer
+        DepartmentTransfer
+        where
+        status = 1
     </select>
 
 
@@ -33,8 +37,8 @@
         SELECT
         *
         FROM
-        transfer
-        where 1=1
+        DepartmentTransfer
+        where DepartmentTransfer.status = 1
         <if test="startData != null and startData!=''" >
             AND  date_format(transferTime,'%Y-%m-%d') >=#{startData}
         </if>
@@ -44,12 +48,26 @@
     </select>
 
 
+    <select id="getAllJobTransferByTime" resultType="JobTransfer">
+        SELECT
+        *
+        FROM
+        JobTransfer
+        where JobTransfer.status = 1
+        <if test="startData != null and startData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(transferTime,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
     <select id="getAllLeavingByDnoAndTime" resultType="Leaving">
        SELECT
-        leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason
+        leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason,leaving.status
         FROM
         department left join leaving on department.department = leaving.department
-        where 1 = 1
+        where leaving.status = 1
         <if test="dno != null and dno!='' and dno!='time' and dno!='TIME'  " >
             AND  department.dno = #{dno}
         </if>
@@ -61,13 +79,31 @@
         </if>
     </select>
 
+    <select id="getAllPositionTransferByDnoAndTime" resultType="PositionTransfer">
+        SELECT
+        PositionTransfer.transferid, PositionTransfer.id, PositionTransfer.transferReason, PositionTransfer.transferDate, status, PositionTransfer.department
+        FROM
+        department left join PositionTransfer on department.department = PositionTransfer.department
+        where PositionTransfer.status = 1
+        <if test="dno != null and dno!='' and dno!='time' and dno!='TIME'  " >
+            AND  department.dno = #{dno}
+        </if>
+        <if test="startData != null and startData!=''" >
+            AND  date_format(transferDate,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(transferDate,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+
     <select id="getAllTransferByMonth" resultType="DepartmentTransfer">
         SELECT
         *
         FROM
-        transfer
-        where
-        date_format(transferTime,'%Y') =#{year}
+        DepartmentTransfer
+        where  DepartmentTransfer.status = 1
+        AND date_format(transferTime,'%Y') =#{year}
         <if test="month != null and month!=''" >
          AND  date_format(transferTime,'%m') = #{month}
         </if>
@@ -79,10 +115,35 @@
         *
         FROM
         leaving
-        where
-        date_format(leavingtime,'%Y') = #{year}
+        where leaving.status = 1
+        AND date_format(leavingtime,'%Y') = #{year}
         <if test="month != null and month!=''" >
             AND  date_format(leavingtime,'%m') = #{month}
+        </if>
+    </select>
+
+    <select id="getAllJobTransferByMonth" resultType="JobTransfer">
+        SELECT
+        *
+        FROM
+        JobTransfer
+        where  JobTransfer.status = 1
+        AND date_format(transferTime,'%Y') =#{year}
+        <if test="month != null and month!=''" >
+            AND  date_format(transferTime,'%m') = #{month}
+        </if>
+    </select>
+
+
+    <select id="getAllPositionTransferByMonth" resultType="PositionTransfer">
+        SELECT
+        *
+        FROM
+        PositionTransfer
+        where PositionTransfer.status = 1
+        AND date_format(transferdate,'%Y') = #{year}
+        <if test="month != null and month!=''" >
+            AND  date_format(transferdate,'%m') = #{month}
         </if>
     </select>
 </mapper>
