@@ -22,6 +22,10 @@ public class AccountService {
         return account;
     }
 
+    public Account getAccountByUsername(String username){
+        Account account = accountMapper.getAccountByusername(username);
+        return account;
+    }
 
 //    public Account getAccountByUsername(String username) {
 //        Account account = accountMapper.getAccountByUsername(username);

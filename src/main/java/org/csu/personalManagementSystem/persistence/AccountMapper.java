@@ -31,4 +31,7 @@ public interface AccountMapper {
 //
     void updatePassword(Account account);
     Account getAccountByUsernameAndPassword(String username,String password);
+    Account getAccountByusername(String username);
 }
+
+

@@ -12,4 +12,12 @@
         insert into transfer
         values (#{transferId}, #{id},#{transferReason},#{transferTime},#{departmentBefore},#{departmentAfter})
     </insert>
+
+    <select id="seeLeavings" resultType="Leaving">
+        select * from leaving
+    </select>
+
+    <select id="seeTransfers" resultType="Transfer">
+        select * from transfer
+    </select>
 </mapper>

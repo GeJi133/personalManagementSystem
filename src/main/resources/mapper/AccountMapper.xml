@@ -105,6 +105,14 @@
         id = #{username}
         AND password = #{password}
     </select>
+
+    <select id="getAccountByusername" parameterType="String" resultType="Account">
+        select
+        *
+        from account
+        where
+        id = #{username}
+    </select>
     <update id="updatePassword" parameterType="Account">
         update account
         set password = #{password}

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/accounts")
 @CrossOrigin
 public class AccountController {
+
+
     @Autowired
     AccountService accountService;
 
@@ -42,95 +44,19 @@ public class AccountController {
     @PatchMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> updatePassword(@RequestBody Account account){
         AppResult<String> appResult = new AppResult<>();
-        accountService.updatePassword (account);
-        appResult = ResultBuilder.successNoData(ResultCode.Handled);
+        if(accountService.getAccountByUsername(account.getUsername())!=null){
+            accountService.updatePassword (account);
+            appResult = ResultBuilder.successNoData(ResultCode.Handled);
+        }
+        else {
+            appResult = ResultBuilder.fail(ResultCode.BadRequest);
+        }
         return appResult;
     }
 
 
 
-//    @UserLoginToken
-//    @GetMapping(value = "/username/{username}",produces="application/Json;charset=UTF-8")
-//    public AppResult<Account> getAccountByUsername(@PathVariable("username")String username){
-//        AppResult<Account> appResult = new AppResult<>();
-//        Account account = accountService.getAccountByUsernameAndPassword(username,pass);
-//        if(account == null)
-//        {
-//            appResult = ResultBuilder.fail(ResultCode.UsernameNotFound);
-//        }
-//        else
-//        {
-//            appResult = ResultBuilder.successData(ResultCode.OK,account);
-//        }
-//        return appResult;
-//    }
-//
-//    @PassToken
-//    @GetMapping(value = "/phone/{phone}", produces="application/Json;charset=UTF-8" )
-//    @ResponseBody
-//    public AppResult<Account> getAccountByPhone(@PathVariable("phone")String phone) {
-//        AppResult<Account> appResult = new AppResult<>();
-//        Account account = accountService.getAccountByPhoneNumber (phone);
-//        if (account == null)
-//        {
-//            appResult = ResultBuilder.fail(ResultCode.PhoneNotFound);
-//        }
-//        else
-//        {
-//            appResult = ResultBuilder.successData(ResultCode.OK,account);
-//        }
-//        return appResult;
-//    }
-//
-//    @UserLoginToken
-//    @PutMapping(value = "/",produces="application/Json;charset=UTF-8")
-//    public AppResult<String> updateAccount(@RequestBody Account account){
-//        AppResult<String> appResult = new AppResult<>();
-//        if(account.getPassword ()!=null){
-//      account.setPassword (DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));}
-//        accountService.updateAccount (account);
-//        appResult = ResultBuilder.successNoData(ResultCode.Handled);
-//        return appResult;
-//    }
-//
-//    @UserLoginToken
-//    @PatchMapping(value = "/",produces="application/Json;charset=UTF-8")
-//    public AppResult<String> updatePassword(@RequestBody Account account){
-//        AppResult<String> appResult = new AppResult<>();
-//        account.setPassword (DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
-//        accountService.updatePassword (account);
-//        appResult = ResultBuilder.successNoData(ResultCode.Handled);
-//        return appResult;
-//    }
-//
-//    @PassToken
-//    @PostMapping(value = "/", produces="application/Json;charset=UTF-8" )
-//    @ResponseBody
-//    public AppResult<String> insertAccount(@RequestBody Account account ){
-//        AppResult<String> appResult = new AppResult<>();
-//      System.out.println (account.getPassword());
-//        account.setPassword (DigestUtils.md5DigestAsHex(account.getPassword ().getBytes()));
-//        System.out.println (account.getPassword());
-//        accountService.insertAccount (account);
-//        appResult = ResultBuilder.successNoData(ResultCode.Handled);
-//        return appResult;
-//    }
-//
-//    @PassToken
-//    @GetMapping( "/sendVCode" )
-//    public AppResult<String> sendVCode(@RequestParam("phone") String phone) throws ClientException {
-//        AppResult<String> appResult = new AppResult<>();
-//        System.out.println ("手机号"+phone);
-//        String sms = accountService.sendMsg (phone);
-//        String msg;
-//        System.out.println ("sms:"+sms);
-//        if(sms != null){
-//            appResult = ResultBuilder.successNoData(ResultCode.Handled);
-//        }
-//        else {
-//            appResult = ResultBuilder.fail(ResultCode.VerifyCodeNotSend);
-//        }
-//        return appResult;
-//    }
+
+
 
 }
