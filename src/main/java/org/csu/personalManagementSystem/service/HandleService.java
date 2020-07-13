@@ -24,4 +24,5 @@ public class HandleService {
     public void handleJobTransfer(String id,String wantedJob){
         handleMapper.handleJobTransfer(id, wantedJob);
     }
+
 }
