@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.SalaryMapper">
+
+    <select id="getSalaryByPage" resultType="Salary">
+          select employee.id as id, basicsalary, insurance, awardmoney, finedmoney, finalsalary, name, sex, email from salary, employee where employee.id = salary.id;
+    </select>
+
+    <select id="getAllSalary" resultType="Salary">
+          select employee.id as id, basicsalary, insurance, awardmoney, finedmoney, finalsalary, name, sex, email from salary, employee where employee.id = salary.id;
+    </select>
+
+    <select id="getSalaryById" parameterType="string" resultType="Salary">
+          select employee.id as id, basicsalary, insurance, awardmoney, finedmoney, finalsalary, name, sex, email from salary, employee where employee.id = salary.id and salary.id = #{id};
+    </select>
+
+    <select id="getSalaryByName" parameterType="string" resultType="Salary">
+          select employee.id as id, basicsalary, insurance, awardmoney, finedmoney, finalsalary, name, sex, email from salary, employee where employee.id = salary.id
+        <if test="name != null and name!=''">
+            AND (name like concat('%',#{name},'%'))
+        </if>
+    </select>
+
+    <update id="updateSalaryByPrimaryKeySelective" parameterType="Salary">
+        update salary
+        <set>
+            <if test="basicsalary != null">
+                basicsalary = #{basicsalary,jdbcType=INTEGER},
+            </if>
+            <if test="insurance != null">
+                insurance = #{insurance,jdbcType=INTEGER},
+            </if>
+            <if test="awardmoney != null">
+                awardmoney = #{awardmoney,jdbcType=INTEGER},
+            </if>
+            <if test="finedmoney != null">
+                finedmoney = #{finedmoney,jdbcType=INTEGER},
+            </if>
+            finalsalary = #{basicsalary,jdbcType=INTEGER} - #{insurance,jdbcType=INTEGER} + #{awardmoney,jdbcType=INTEGER} - #{finedmoney,jdbcType=INTEGER}
+        </set>
+        where id = #{id, jdbcType=VARCHAR}
+    </update>
+</mapper>

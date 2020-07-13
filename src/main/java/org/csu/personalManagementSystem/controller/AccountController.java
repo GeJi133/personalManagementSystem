@@ -38,7 +38,7 @@ public class AccountController {
         return appResult;
     }
 
-    @UserLoginToken
+    //@UserLoginToken
     @GetMapping(value = "/username/{username}",produces="application/Json;charset=UTF-8")
     public AppResult<Account> getAccountByUsername(@PathVariable("username")String username){
         AppResult<Account> appResult = new AppResult<>();
@@ -71,7 +71,7 @@ public class AccountController {
         return appResult;
     }
 
-    @UserLoginToken
+    //@UserLoginToken
     @PutMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> updateAccount(@RequestBody Account account){
         AppResult<String> appResult = new AppResult<>();
@@ -82,7 +82,7 @@ public class AccountController {
         return appResult;
     }
 
-    @UserLoginToken
+   // @UserLoginToken
     @PatchMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> updatePassword(@RequestBody Account account){
         AppResult<String> appResult = new AppResult<>();
