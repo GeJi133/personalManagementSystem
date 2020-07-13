@@ -6,6 +6,15 @@ public class PositionTransfer {
     private String transferReason;
     private String transferDate;
     private String status;
+    private String department;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public String getTransferId() {
         return transferId;
