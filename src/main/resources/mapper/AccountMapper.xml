@@ -2,100 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--<mapper namespace="org.csu.personalManagementSystem.persistence.AccountMapper">-->
 
-<!--    <select id="getSignOnByUsernameAndPassword" parameterType="Account" resultType="Account">-->
-<!--        SELECT-->
-<!--        *-->
-<!--        FROM-->
-<!--        SUPPLIERSIGNON-->
-<!--        WHERE-->
-<!--        USERNAME = #{username}-->
-<!--        AND PASSWORD = #{password}-->
-<!--    </select>-->
-
-<!--    <select id="getSignOnByUsername" parameterType="string" resultType="Account">-->
-<!--        SELECT-->
-<!--          *-->
-<!--        FROM-->
-<!--        SUPPLIERSIGNON-->
-<!--        WHERE-->
-<!--        SUPPLIERSIGNON.USERNAME = #{username}-->
-<!--  </select>-->
-
-<!--    <select id="getAccountByUsername" parameterType="string" resultType="Account">-->
-<!--        SELECT-->
-<!--          *-->
-<!--        FROM-->
-<!--        SUPPLIER-->
-<!--        WHERE-->
-<!--        SUPPLIER.USERNAME = #{username}-->
-<!--  </select>-->
-
-<!--    <select id="getSignOnByPhone" parameterType="Account" resultType="Account">-->
-<!--    SELECT-->
-<!--          *-->
-<!--        FROM-->
-<!--        SUPPLIERSIGNON-->
-<!--        WHERE-->
-<!--        SUPPLIERSIGNON.PHONENUMBER = #{phone}-->
-<!--  </select>-->
-
-<!--    <select id="getAccountByPhone" parameterType="Account" resultType="Account">-->
-<!--    SELECT-->
-<!--          *-->
-<!--        FROM-->
-<!--        SUPPLIER-->
-<!--        WHERE-->
-<!--        SUPPLIER.PHONE = #{phone}-->
-<!--  </select>-->
-
-<!--    <update id="updateAccount" parameterType="Account">-->
-<!--   UPDATE SUPPLIER SET-->
-<!--      STATUS = #{status},-->
-<!--      ADDR1 = #{address1},-->
-<!--      ADDR2 = #{address2,jdbcType=VARCHAR},-->
-<!--      CITY = #{city},-->
-<!--      STATE = #{state},-->
-<!--      ZIP = #{zip},-->
-<!--      PHONE = #{phone}-->
-<!--    WHERE USERNAME= #{username}-->
-<!--  </update>-->
-
-<!--    <update id="updatePassword" parameterType="Account">-->
-<!--   UPDATE SUPPLIERSIGNON SET-->
-<!--      PASSWORD = #{password}-->
-<!--    WHERE USERNAME= #{username}-->
-<!--  </update>-->
-
-<!--    <insert id="insertSignon" parameterType="Account">-->
-<!--    INSERT INTO SUPPLIERSIGNON (PASSWORD,USERNAME,PHONENUMBER)-->
-<!--    VALUES (#{password}, #{username},#{phone})-->
-<!--  </insert>-->
-
-<!--&lt;!&ndash;    以下应为未用部分&ndash;&gt;-->
-
-<!--    <select id="checkPhone" parameterType="string" resultType="Account">-->
-<!--    SELECT-->
-<!--        *-->
-<!--        FROM-->
-<!--        SUPPLIERSIGNON-->
-<!--        WHERE-->
-<!--        PHONE = #{phone}-->
-<!--  </select>-->
-
-<!--    <insert id="insertAccount" parameterType="Account">-->
-<!--    INSERT INTO SUPPLIER-->
-<!--      (name, status,  ADDR1, ADDR2, CITY, STATE, ZIP,  PHONE)-->
-<!--    VALUES-->
-<!--      (#{username}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{phone})-->
-<!--  </insert>-->
-
-<!--    <update id="updateSignon" parameterType="account">-->
-<!--    UPDATE SUPPLIERSIGNON SET PASSWORD = #{password}-->
-<!--    WHERE USERNAME = #{username}-->
-<!--  </update>-->
-<!--</mapper>-->
 <mapper namespace="org.csu.personalManagementSystem.persistence.AccountMapper">
     <select id="getAccountByUsernameAndPassword" parameterType="string" resultType="Account">
         select
@@ -106,7 +13,7 @@
         AND password = #{password}
     </select>
 
-    <select id="getAccountByusername" parameterType="String" resultType="Account">
+    <select id="getAccountByUsername" parameterType="String" resultType="Account">
         select
         *
         from account

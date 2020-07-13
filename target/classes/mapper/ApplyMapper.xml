@@ -8,8 +8,35 @@
         values (#{leavingId}, #{id},#{department},#{leavingTime},#{leavingReason})
     </insert>
 
-    <insert id="insertTransfer" parameterType="Transfer">
-        insert into transfer
-        values (#{transferId}, #{id},#{transferReason},#{transferTime},#{departmentBefore},#{departmentAfter})
+    <insert id="insertJobTransfer" parameterType="JobTransfer">
+        insert into jobtransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferTime},#{jobBefore},#{jobAfter},#{position})
     </insert>
+
+    <insert id="insertDepartmentTransfer" parameterType="DepartmentTransfer">
+        insert into departmenttransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferTime},#{departmentBefore},#{departmentAfter},#{position})
+    </insert>
+
+    <insert id="insertPositionTransfer" parameterType="PositionTransfer">
+        insert into positiontransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferDate},#{position })
+    </insert>
+
+    <select id="seeLeavings" resultType="Leaving">
+        select * from leaving
+    </select>
+
+    <select id="seeDepartmentTransfers" resultType="DepartmentTransfer">
+        select * from departmenttransfer
+    </select>
+
+    <select id="seePositionTransfers" resultType="PositionTransfer">
+        select * from positiontransfer
+    </select>
+
+    <select id="seeJobTransfers" resultType="JobTransfer">
+        select * from jobtransfer
+    </select>
+
 </mapper>

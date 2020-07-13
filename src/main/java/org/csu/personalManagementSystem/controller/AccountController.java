@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class AccountController {
 
-
     @Autowired
     AccountService accountService;
-
-    @org.csu.personalManagementSystem.other.PassToken
+    
     @PostMapping(value = "/login",produces="application/Json;charset=UTF-8" )
     @ResponseBody
     public AppResult<String> Login(@RequestParam("username") String username, @RequestParam("password") String  password) {
