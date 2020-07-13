@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.personalManagementSystem.persistence.InformationMapper">
+    <select id="seeInformation" resultType="Employee" parameterType="String">
+        select * from employee
+        where id=#{id}
+    </select>
+
+    <select id="seeAllEmployeesInformation" resultType="Employee">
+        select * from employee
+    </select>
+
+    <select id="seePracticeEmployeesInformation" resultType="Employee">
+        select * from employee
+        where position ='0'
+    </select>
+
+    <select id="seeFormalEmployeesInformation" resultType="Employee">
+        select * from employee
+        where (position ='1' or position ='2')
+    </select>
+
+    <update id="updateInformation" parameterType="Employee">
+        update employee
+        set name=#{name},sex=#{sex},department=#{department},
+        career=#{career},language =#{language},family=#{family}
+        where id=#{id}
+    </update>
+</mapper>
