@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.personalManagementSystem.persistence.HandleMapper">
+    <update id="handleDepartmentTransfer1" parameterType="DepartmentTransfer">
+        update employee set department=#{departmentAfter} where id=#{id}
+    </update>
+
+    <update id="handleDepartmentTransfer2" parameterType="DepartmentTransfer">
+        update departmenttransfer set status =1,transferTime=current_date where id=#{id}
+    </update>
+
+    <delete id="handleLeaving1" parameterType="Leaving">
+        delete from employee where id=#{id};
+    </delete>
+
+    <delete id="handleLeaving2" parameterType="Leaving">
+        update leaving set status ='1',leavingTime=current_date where id=#{id};
+    </delete>
+
+    <update id="handleJobTransfer1" parameterType="JobTransfer">
+        update employee set jobs=#{jobAfter} where id=#{id};
+    </update>
+
+    <update id="handleJobTransfer2" parameterType="JobTransfer">
+        update jobtransfer set status ='1',transferTime=current_date where id=#{id};
+    </update>
+
+    <update id="handlePositionTransfer1" parameterType="PositionTransfer">
+        update employee set position='1' where id=#{id};
+    </update>
+
+    <update id="handlePositionTransfer2" parameterType="PositionTransfer">
+        update positiontransfer set status ='1',transferDate=current_date where id=#{id}
+    </update>
+</mapper>

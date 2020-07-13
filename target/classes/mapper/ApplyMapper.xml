@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.ApplyMapper">
+    <insert id="insertLeaving" parameterType="Leaving">
+        insert into leaving
+        values (#{leavingId}, #{id},#{department},#{leavingTime},#{leavingReason},#{status})
+    </insert>
+
+    <insert id="insertJobTransfer" parameterType="JobTransfer">
+        insert into jobtransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferTime},#{jobBefore},#{jobAfter},#{status})
+    </insert>
+
+    <insert id="insertDepartmentTransfer" parameterType="DepartmentTransfer">
+        insert into departmenttransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferTime},#{departmentBefore},#{departmentAfter},#{status})
+    </insert>
+
+    <insert id="insertPositionTransfer" parameterType="PositionTransfer">
+        insert into positiontransfer
+        values (#{transferId}, #{id},#{transferReason},#{transferDate},#{status })
+    </insert>
+
+    <select id="seeLeavings" resultType="Leaving">
+        select * from leaving
+    </select>
+
+    <select id="seeDepartmentTransfers" resultType="DepartmentTransfer">
+        select * from departmenttransfer
+    </select>
+
+    <select id="seePositionTransfers" resultType="PositionTransfer">
+        select * from positiontransfer
+    </select>
+
+    <select id="seeJobTransfers" resultType="JobTransfer">
+        select * from jobtransfer
+    </select>
+
+</mapper>
