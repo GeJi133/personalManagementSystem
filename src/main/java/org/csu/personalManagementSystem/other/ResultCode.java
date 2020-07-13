@@ -2,6 +2,8 @@ package org.csu.personalManagementSystem.other;
 
 public enum ResultCode {
     OK(200,"请求成功"),
+    UpdateSuccess(200,"更新成功"),
+    UpdateFail(500,"更新失败"),
     Created(202,"请求成功且服务器已创建资源"),
     Handled(204,"请求成功，无返回信息"),
     BadRequest(400,"语义有误或请求参数有误"),

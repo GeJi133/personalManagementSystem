@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.EmployeeFamilyMapper">
+
+    <select id="getEmployeeFamilyByPage" parameterType="Employee" resultType="Employee">
+          select employee.id as id, family, name, sex, email from employee_family, employee where employee.id = employee_family.id;
+    </select>
+
+    <select id="getAllEmployeeFamily" resultType="Employee">
+          select employee.id as id, family, name, sex, email from employee_family, employee where employee.id = employee_family.id;
+    </select>
+
+    <select id="getEmployeeFamilyById" parameterType="string" resultType="Employee">
+          select employee.id as id, family, name, sex, email from employee_family, employee where employee.id = employee_family.id and employee_family.id = #{id};
+    </select>
+
+    <select id="getEmployeeFamilyByName" parameterType="string" resultType="Employee">
+        select employee.id as id, family, name, sex, email from employee_family, employee where employee.id = employee_family.id
+        <if test="name != null and name!=''">
+            AND (name like concat('%',#{name},'%'))
+        </if>
+    </select>
+
+    <insert id="insertFamilySelective" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+        insert into employee_family (id, family)
+        values (
+        <if test="id != null">
+            #{id,jdbcType=VARCHAR},
+        </if>
+        <if test="family != null">
+            #{family,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+
+    <delete id="deleteFamilyByPrimaryKey" parameterType="java.lang.String">
+    delete from employee_family
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <update id="updateFamilyByPrimaryKeySelective" parameterType="Employee">
+        update employee_family
+        <set>
+            <if test="family != null">
+                family = #{family,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id = #{id, jdbcType=VARCHAR}
+    </update>
+</mapper>

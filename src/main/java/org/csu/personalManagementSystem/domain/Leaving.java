@@ -8,13 +8,21 @@ public class Leaving {
     private String department;
     private Date leavingTime;
     private String leavingReason;
-
+    private String status;
     public String getLeavingId() {
         return leavingId;
     }
 
     public void setLeavingId(String leavingId) {
         this.leavingId = leavingId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {

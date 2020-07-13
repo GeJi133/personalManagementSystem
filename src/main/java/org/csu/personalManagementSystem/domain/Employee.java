@@ -1,5 +1,7 @@
 package org.csu.personalManagementSystem.domain;
 
+import javax.validation.constraints.NotNull;
+
 public class Employee {
     private String id;
     private String name;
@@ -8,10 +10,11 @@ public class Employee {
     private String career;
     private String position;
     private String jobs;
-    private String languages;
+    private String language;
     private String family;
-    private String startTime;
-    private String endTime;
+    private String email;
+    private String starttime;
+    private String endtime;
 
     public String getId() {
         return id;
@@ -69,37 +72,41 @@ public class Employee {
         this.jobs = jobs;
     }
 
-    public String getLanguages() {
-        return languages;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setLanguages(String languages) {
-        this.languages = languages;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public String getFamily() {
-        return family;
-    }
+    public String getFamily() { return family; }
 
     public void setFamily(String family) {
         this.family = family;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getEmail() {
+        return email;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getStarttime() {
+        return starttime;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
     }
 
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
 }
-

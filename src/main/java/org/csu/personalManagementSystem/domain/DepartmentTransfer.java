@@ -1,15 +1,24 @@
 package org.csu.personalManagementSystem.domain;
 
-public class Transfer {
+public class DepartmentTransfer {
     private String transferId;
     private String id;
     private String transferReason;
     private String transferTime;
     private String departmentBefore;
     private String departmentAfter;
+    private String status;
 
     public String getTransferId() {
         return transferId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setTransferId(String transferId) {

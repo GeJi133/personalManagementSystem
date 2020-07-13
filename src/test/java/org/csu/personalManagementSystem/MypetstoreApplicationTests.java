@@ -86,3 +86,50 @@
 //    }
 //
 //}
+package org.csu.personalManagementSystem;
+
+import org.csu.personalManagementSystem.domain.Employee;
+import org.csu.personalManagementSystem.domain.RespPageBean;
+import org.csu.personalManagementSystem.domain.Salary;
+import org.csu.personalManagementSystem.persistence.EmployeeLanguageMapper;
+import org.csu.personalManagementSystem.service.EmployeeService;
+import org.csu.personalManagementSystem.service.SalaryService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.util.List;
+
+@SpringBootTest
+class personalManageSystemApplicationTests{
+
+    @Autowired
+    private DataSource dataSource;
+    @Autowired
+    private SalaryService salaryService;
+    @Test
+    void contextLoads(){
+        try{
+            Connection connection = dataSource.getConnection();
+            System.out.println("Text....."+connection);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void test(){
+        Salary salary = new Salary();
+        salary.setId("8211180510");
+        salary.setBasicsalary(9000);
+        salary.setInsurance(1000);
+        salary.setAwardmoney(4000);
+        salary.setFinedmoney(500);
+        Integer i;
+        i = salaryService.updateSalary(salary);
+        System.out.println(i + "," + "........");
+    }
+
+}

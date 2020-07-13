@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.EmployeeMapper">
+
+    <select id="getEmployeeByPage" parameterType="Employee" resultType="Employee">
+          select * from employee;
+    </select>
+
+    <insert id="insertSelective" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+        insert into employee (id, name, sex, department, career, position, jobs, language, family, starttime, endtime, email)
+        values (
+        <if test="id != null">
+            #{id,jdbcType=VARCHAR},
+        </if>
+        <if test="name != null">
+            #{name,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null">
+            #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="department != null">
+            #{department,jdbcType=VARCHAR},
+        </if>
+        <if test="career != null">
+            #{career,jdbcType=VARCHAR},
+        </if>
+        <if test="position != null">
+            #{position,jdbcType=VARCHAR},
+        </if>
+        <if test="jobs != null">
+            #{jobs,jdbcType=VARCHAR},
+        </if>
+        <if test="language != null">
+            #{language,jdbcType=VARCHAR},
+        </if>
+        <if test="family != null">
+            #{family,jdbcType=VARCHAR},
+        </if>
+            #{starttime,jdbcType=VARCHAR},
+            #{endtime,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from employee
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+</mapper>

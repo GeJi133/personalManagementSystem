@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.EmployeeLanguageMapper">
+
+    <select id="getEmployeeLanguageByPage" parameterType="Employee" resultType="Employee">
+          select employee.id as id, language, name, sex, email from employee_language, employee where employee.id = employee_language.id;
+    </select>
+
+    <select id="getAllEmployeeLanguage" resultType="Employee">
+          select employee.id as id, language, name, sex, email from employee_language, employee where employee.id = employee_language.id;
+    </select>
+
+    <select id="getEmployeeLanguageById" parameterType="string" resultType="Employee">
+          select employee.id as id, language, name, sex, email from employee_language, employee where employee.id = employee_language.id and employee_language.id = #{id};
+    </select>
+
+    <select id="getEmployeeLanguageByName" parameterType="string" resultType="Employee">
+        select employee.id as id, language, name, sex, email from employee_language, employee where employee.id = employee_language.id
+        <if test="name != null and name!=''">
+            AND (name like concat('%',#{name},'%'))
+        </if>
+    </select>
+
+    <insert id="insertLanguageSelective" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+        insert into employee_language (id, language)
+        values (
+        <if test="id != null">
+            #{id,jdbcType=VARCHAR},
+        </if>
+        <if test="language != null">
+            #{language,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+
+    <delete id="deleteLanguageByPrimaryKey" parameterType="java.lang.String">
+    delete from employee_language
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <update id="updateLanguageByPrimaryKeySelective" parameterType="Employee">
+    update employee_language
+    <set>
+    <if test="language != null">
+    language = #{language,jdbcType=VARCHAR}
+    </if>
+    </set>
+    where id = #{id, jdbcType=VARCHAR}
+    </update>
+</mapper>

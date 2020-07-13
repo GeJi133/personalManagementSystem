@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.personalManagementSystem.persistence.ClockMapper">
+
+    <select id="getClockByPage" resultType="Clock">
+          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id;
+    </select>
+
+    <select id="getAllClock" resultType="Clock">
+          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id;
+    </select>
+
+    <select id="getClockById" parameterType="string" resultType="Clock">
+          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id and attendence_record.id = #{id};
+    </select>
+
+    <select id="getClockByName" parameterType="string" resultType="Clock">
+        select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id
+        <if test="name != null and name!=''">
+            AND (name like concat('%',#{name},'%'))
+        </if>
+    </select>
+
+    <update id="updateClockByPrimaryKeySelective" parameterType="Clock">
+        update attendence_record
+        <set>
+            <if test="attendtime != null">
+                attendtime = #{attendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="leavetime != null">
+                leavetime = #{leavetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id, jdbcType=VARCHAR}
+    </update>
+</mapper>
