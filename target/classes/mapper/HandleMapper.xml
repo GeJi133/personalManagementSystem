@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.personalManagementSystem.persistence.HandleMapper">
+<<<<<<< HEAD
     <update id="handleDepartmentTransfer1" parameterType="DepartmentTransfer">
         update employee set department=#{departmentAfter} where id=#{id}
     </update>
@@ -32,5 +33,22 @@
 
     <update id="handlePositionTransfer2" parameterType="PositionTransfer">
         update positiontransfer set status ='1',transferDate=current_date where id=#{id}
+=======
+    <update id="handleTransfer" parameterType="Transfer">
+        update employee
+        set department=#{departmentAfter}
+        where id=#{id}
+    </update>
+
+    <delete id="handleLeaving" parameterType="Leaving">
+        delete from employee
+        where id=#{id}
+    </delete>
+
+    <update id="handleJobTransfer" parameterType="String">
+        update employee
+        set jobs=#{wantedJob}
+        where id=#{id}
+>>>>>>> ba94bb41b27c1c0049548d36772fe8177d87911f
     </update>
 </mapper>
