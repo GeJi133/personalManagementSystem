@@ -5,7 +5,7 @@ public class PositionTransfer {
     private String id;
     private String transferReason;
     private String transferDate;
-    private String position;
+    private String status;
 
     public String getTransferId() {
         return transferId;
@@ -39,11 +39,11 @@ public class PositionTransfer {
         this.transferDate = transferDate;
     }
 
-    public String getPosition() {
-        return position;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

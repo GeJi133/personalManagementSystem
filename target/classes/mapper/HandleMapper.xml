@@ -7,7 +7,7 @@
     </update>
 
     <update id="handleDepartmentTransfer2" parameterType="DepartmentTransfer">
-        update departmenttransfer set position =1,transferTime=current_date where id=#{id}
+        update departmenttransfer set status =1,transferTime=current_date where id=#{id}
     </update>
 
     <delete id="handleLeaving1" parameterType="Leaving">
@@ -15,7 +15,7 @@
     </delete>
 
     <delete id="handleLeaving2" parameterType="Leaving">
-        update leaving set position ='1',leavingTime=current_date where id=#{id};
+        update leaving set status ='1',leavingTime=current_date where id=#{id};
     </delete>
 
     <update id="handleJobTransfer1" parameterType="JobTransfer">
@@ -23,7 +23,7 @@
     </update>
 
     <update id="handleJobTransfer2" parameterType="JobTransfer">
-        update jobtransfer set position ='1',transferTime=current_date where id=#{id};
+        update jobtransfer set status ='1',transferTime=current_date where id=#{id};
     </update>
 
     <update id="handlePositionTransfer1" parameterType="PositionTransfer">
@@ -31,6 +31,6 @@
     </update>
 
     <update id="handlePositionTransfer2" parameterType="PositionTransfer">
-        update positiontransfer set position ='1',transferDate=current_date where id=#{id}
+        update positiontransfer set status ='1',transferDate=current_date where id=#{id}
     </update>
 </mapper>

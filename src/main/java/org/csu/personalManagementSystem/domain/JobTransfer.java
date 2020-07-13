@@ -7,7 +7,7 @@ public class JobTransfer {
     private String transferTime;
     private String jobBefore;
     private String jobAfter;
-    private String position;
+    private String status;
 
     public String getTransferId() {
         return transferId;
@@ -57,11 +57,11 @@ public class JobTransfer {
         this.jobAfter = jobAfter;
     }
 
-    public String getPosition() {
-        return position;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
