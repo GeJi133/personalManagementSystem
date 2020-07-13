@@ -21,7 +21,7 @@
 <!--    </select>-->
 
 
-    <select id="getAllTransfer" resultType="Transfer">
+    <select id="getAllTransfer" resultType="DepartmentTransfer">
         SELECT
         *
         FROM
@@ -29,7 +29,7 @@
     </select>
 
 
-    <select id="getAllTransferByTime" resultType="Transfer">
+    <select id="getAllTransferByTime" resultType="DepartmentTransfer">
         SELECT
         *
         FROM
@@ -49,14 +49,10 @@
         leaving.leavingId,leaving.id,leaving.department,leaving.leavingTime,leaving.leavingReason
         FROM
         department left join leaving on department.department = leaving.department
-<<<<<<< HEAD
-        where department.dno = #{dno}
-=======
         where 1 = 1
         <if test="dno != null and dno!='' and dno!='time' and dno!='TIME'  " >
             AND  department.dno = #{dno}
         </if>
->>>>>>> ba94bb41b27c1c0049548d36772fe8177d87911f
        <if test="startData != null and startData!=''" >
         AND  date_format(leavingtime,'%Y-%m-%d') >=#{startData}
       </if>
@@ -65,7 +61,7 @@
         </if>
     </select>
 
-    <select id="getAllTransferByMonth" resultType="Transfer">
+    <select id="getAllTransferByMonth" resultType="DepartmentTransfer">
         SELECT
         *
         FROM

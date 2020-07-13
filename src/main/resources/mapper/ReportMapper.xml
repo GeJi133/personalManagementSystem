@@ -21,7 +21,7 @@
 <!--    </select>-->
 
 
-    <select id="getAllTransfer" resultType="Transfer">
+    <select id="getAllTransfer" resultType="DepartmentTransfer">
         SELECT
         *
         FROM
@@ -29,7 +29,7 @@
     </select>
 
 
-    <select id="getAllTransferByTime" resultType="Transfer">
+    <select id="getAllTransferByTime" resultType="DepartmentTransfer">
         SELECT
         *
         FROM
@@ -61,7 +61,7 @@
         </if>
     </select>
 
-    <select id="getAllTransferByMonth" resultType="Transfer">
+    <select id="getAllTransferByMonth" resultType="DepartmentTransfer">
         SELECT
         *
         FROM

@@ -1,7 +1,7 @@
 package org.csu.personalManagementSystem;
 
 import org.csu.personalManagementSystem.domain.Leaving;
-import org.csu.personalManagementSystem.domain.Transfer;
+import org.csu.personalManagementSystem.domain.DepartmentTransfer;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.csu.personalManagementSystem.service.ReportService;
 import org.junit.jupiter.api.Test;
@@ -59,8 +59,8 @@ public class TestReport {
     void testGetAllTransferByTime(){
         String startData = "2020-07-18";
         String endData = null;
-        List<Transfer> transfers = reportService.getAllTransferByTime(startData,endData);
-        for (Transfer obj:transfers
+        List<DepartmentTransfer> transfers = reportService.getAllTransferByTime(startData,endData);
+        for (DepartmentTransfer obj:transfers
         ) {
             System.out.println(obj.getId() + "  " + obj.getDepartmentBefore() + "    "+obj.getDepartmentAfter()+"    "+obj.getTransferTime());
 
@@ -73,8 +73,8 @@ public class TestReport {
     void testGetAllTransferByMonth(){
         String year = "2020";
         String month = null;
-        List<Transfer> transfers = reportService.getAllTransferByMonth(year,month);
-        for (Transfer obj:transfers
+        List<DepartmentTransfer> transfers = reportService.getAllTransferByMonth(year,month);
+        for (DepartmentTransfer obj:transfers
         ) {
             System.out.println(obj.getId() + "  " + obj.getDepartmentBefore() + "    "+obj.getDepartmentAfter()+"    "+obj.getTransferTime());
 

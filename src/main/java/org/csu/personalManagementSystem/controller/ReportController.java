@@ -53,19 +53,19 @@ public class ReportController {
 
     //查询所有调动情况
     @GetMapping(value = "/transfers", produces = "application/Json;charset=UTF-8")
-    public AppResult<List<Transfer>> getTransfers(){
-        AppResult<List<Transfer>> appResult = new AppResult<>();
-        List<Transfer> transfers = reportService.getAllTransfer();
+    public AppResult<List<DepartmentTransfer>> getTransfers(){
+        AppResult<List<DepartmentTransfer>> appResult = new AppResult<>();
+        List<DepartmentTransfer> transfers = reportService.getAllTransfer();
         appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
         return appResult;
     }
     //查询一段时间内调动情况
     @GetMapping(value = "/transfers/time", produces = "application/Json;charset=UTF-8")
-    public AppResult<List<Transfer>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
+    public AppResult<List<DepartmentTransfer>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
                                                       @RequestParam(value = "endData", required = false) String endData){
-        AppResult<List<Transfer>> appResult = new AppResult<>();
-        List<Transfer> transfers = reportService.getAllTransferByTime(startData,endData);
+        AppResult<List<DepartmentTransfer>> appResult = new AppResult<>();
+        List<DepartmentTransfer> transfers = reportService.getAllTransferByTime(startData,endData);
         appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
         return appResult;
@@ -77,10 +77,10 @@ public class ReportController {
      */
     //按年月查询所有调动信息
       @GetMapping(value = "/transfers/month", produces = "application/Json;charset=UTF-8")
-      public AppResult<List<Transfer>> getAllTransferByMonth(@RequestParam(value = "year", required = false) String year,
+      public AppResult<List<DepartmentTransfer>> getAllTransferByMonth(@RequestParam(value = "year", required = false) String year,
                                                          @RequestParam(value = "month", required = false) String month){
-          AppResult<List<Transfer>> appResult = new AppResult<>();
-          List<Transfer> transfers = reportService.getAllTransferByMonth(year,month);
+          AppResult<List<DepartmentTransfer>> appResult = new AppResult<>();
+          List<DepartmentTransfer> transfers = reportService.getAllTransferByMonth(year,month);
           appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
           return appResult;

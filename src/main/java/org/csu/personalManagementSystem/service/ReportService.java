@@ -2,7 +2,7 @@ package org.csu.personalManagementSystem.service;
 
 import org.csu.personalManagementSystem.domain.Job;
 import org.csu.personalManagementSystem.domain.Leaving;
-import org.csu.personalManagementSystem.domain.Transfer;
+import org.csu.personalManagementSystem.domain.DepartmentTransfer;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class ReportService {
 //    }
 
     //获取所有调动情况
-    public List<Transfer> getAllTransfer(){
+    public List<DepartmentTransfer> getAllTransfer(){
         return ReportMapper.getAllTransfer();
     }
 
@@ -34,7 +34,7 @@ public class ReportService {
         return ReportMapper.getAllLeavingByDnoAndTime(dno,startData,endData);
     }
     //查询一段时间内的所有调动信息
-    public  List<Transfer> getAllTransferByTime(String startData,String endData) {
+    public  List<DepartmentTransfer> getAllTransferByTime(String startData,String endData) {
         return ReportMapper.getAllTransferByTime(startData,endData);
     }
 
@@ -42,7 +42,7 @@ public class ReportService {
      人事月报
   */
     //按年月查询所有调动信息
-    public List<Transfer> getAllTransferByMonth(String year,String month){
+    public List<DepartmentTransfer> getAllTransferByMonth(String year,String month){
         return ReportMapper.getAllTransferByMonth(year,month);
     }
 
