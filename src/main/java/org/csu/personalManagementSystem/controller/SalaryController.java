@@ -11,6 +11,7 @@ import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.EmployeeLanguageService;
 import org.csu.personalManagementSystem.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +25,7 @@ public class SalaryController {
     @Autowired
     private SalaryService salaryService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/page")
     public String getAllSalaryByPage(Model model, @RequestParam(defaultValue = "1", required = true, value = "pageNum")Integer pageNum){
         Integer pageSize = 8;
@@ -36,6 +38,7 @@ public class SalaryController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Salary>> getAllSalary(){
         AppResult<List<Salary>> appResult = new AppResult<>();
@@ -44,6 +47,7 @@ public class SalaryController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Salary>>  viewJob(@PathVariable("message") String message,
                                          @RequestParam(value = "type", required = false) String type ){
@@ -64,6 +68,7 @@ public class SalaryController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/")
     public RespBean updateSalary(@RequestBody Salary salary) {
         if (salaryService.updateSalary(salary) == 1) {

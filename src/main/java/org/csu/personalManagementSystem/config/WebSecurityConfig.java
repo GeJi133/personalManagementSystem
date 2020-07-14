@@ -58,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/accounts/login").permitAll()
+                .antMatchers("/email/**").permitAll()
 //                .antMatchers("/haha").permitAll()
 //                .antMatchers("/sysUser/test").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()

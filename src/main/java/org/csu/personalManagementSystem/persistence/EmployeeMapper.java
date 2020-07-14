@@ -12,6 +12,7 @@ public interface EmployeeMapper {
     //List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size, @Param("emp") Employee employee);
 
     List<Employee> getEmployeeByPage();
+    Employee getEmployeeById(String id);
     //Long getTotal(@Param("emp") Employee employee);
     int insertSelective(Employee employee);
 

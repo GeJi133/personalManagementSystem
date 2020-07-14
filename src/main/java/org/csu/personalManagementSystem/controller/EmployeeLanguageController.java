@@ -9,6 +9,7 @@ import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.EmployeeLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ public class EmployeeLanguageController {
 
     private EmployeeLanguageService employeeLanguageService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/page")
     public String getAllEmployeeLanguageByPage(Model model, @RequestParam(defaultValue = "1", required = true, value = "pageNum")Integer pageNum){
         Integer pageSize = 8;
@@ -33,6 +35,7 @@ public class EmployeeLanguageController {
         return "allEmployeeLanguageByPage";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Employee>> getAllEmployeeLanguage(){
         AppResult<List<Employee>> appResult = new AppResult<>();
@@ -41,6 +44,7 @@ public class EmployeeLanguageController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Employee>>  viewJob(@PathVariable("message") String message,
                                               @RequestParam(value = "type", required = false) String type ){
@@ -61,8 +65,8 @@ public class EmployeeLanguageController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/")
-
     public RespBean addEmpLanguage(@RequestBody Employee employee) {
         if (employeeLanguageService.addEmpLanguage(employee) == 1) {
             return RespBean.ok("添加成功!");
@@ -70,6 +74,7 @@ public class EmployeeLanguageController {
         return RespBean.error("添加失败!");
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public RespBean deleteEmpLanguageByid(@PathVariable("id") String id) {
         if (employeeLanguageService.deleteEmpLanguageByid(id) == 1) {
@@ -78,6 +83,7 @@ public class EmployeeLanguageController {
         return RespBean.error("删除失败!");
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/")
     public RespBean updateEmpLanguage(@RequestBody Employee employee) {
         if (employeeLanguageService.updateEmpLanguage(employee) == 1) {

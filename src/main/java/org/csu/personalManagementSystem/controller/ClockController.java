@@ -8,6 +8,7 @@ import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.EmployeeLanguageService;
 import org.csu.personalManagementSystem.service.ClockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,7 @@ public class ClockController {
     @Autowired
     private ClockService clockService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/page")
     public String getAllClockByPage(Model model, @RequestParam(defaultValue = "1", required = true, value = "pageNum")Integer pageNum){
         Integer pageSize = 8;
@@ -32,7 +34,7 @@ public class ClockController {
         return "allClock";
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Clock>> getAllClock(){
         AppResult<List<Clock>> appResult = new AppResult<>();
@@ -41,6 +43,7 @@ public class ClockController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Clock>>  viewJob(@PathVariable("message") String message,
                                             @RequestParam(value = "type", required = false) String type ){
@@ -60,8 +63,8 @@ public class ClockController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/")
-
     public RespBean updateClock(@RequestBody  Clock clock) {
         if (clockService.updateClock(clock) == 1) {
             return RespBean.ok("更新成功!");

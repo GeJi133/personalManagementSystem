@@ -8,6 +8,11 @@
           select * from employee;
     </select>
 
+    <select id="getEmployeeById" parameterType="String" resultType="Employee">
+          select * from employee
+          where employee.id=#{id};
+    </select>
+
     <insert id="insertSelective" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
         insert into employee (id, name, sex, department, career, position, jobs, language, family, starttime, endtime, email)
         values (

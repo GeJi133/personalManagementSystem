@@ -8,6 +8,7 @@ import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class JobController {
     @Autowired
     JobService jobService;
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询所有岗位
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Job>> getJobs(){
@@ -50,6 +51,7 @@ public class JobController {
 //        return appResult;
 //    }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询岗位（条件查询，type = jno，根据岗位编号查询， type = job ，根据岗位名称模糊查询）
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Job>>  viewJob(@PathVariable("message") String message,
@@ -77,6 +79,7 @@ public class JobController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //主要用于查询指定岗位当前在职员工信息
     @GetMapping(value = "/employees/{jno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Employee>> getEmployees(@PathVariable("jno") String jno){
@@ -89,6 +92,7 @@ public class JobController {
 
 
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //新增一个岗位
     @PostMapping(value = "/",produces="application/Json;charset=UTF-8")
     @ResponseBody
@@ -100,6 +104,7 @@ public class JobController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //修改岗位
     @PutMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> updateJob(@RequestBody Job job){
@@ -110,6 +115,7 @@ public class JobController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //删除岗位
     @DeleteMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> deleteJob(@RequestBody String jno){

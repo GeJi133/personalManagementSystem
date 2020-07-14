@@ -2,8 +2,12 @@ package org.csu.personalManagementSystem.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.csu.personalManagementSystem.domain.AppResult;
+import org.csu.personalManagementSystem.domain.Department;
 import org.csu.personalManagementSystem.domain.Employee;
 import org.csu.personalManagementSystem.domain.RespBean;
+import org.csu.personalManagementSystem.other.ResultBuilder;
+import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,6 +21,7 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
 
     @GetMapping("/page")
     public String getAllEmployeeByPage(Model model, @RequestParam(defaultValue = "1", required = true, value = "pageNum")Integer pageNum){

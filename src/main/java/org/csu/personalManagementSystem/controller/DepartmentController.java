@@ -23,7 +23,7 @@ public class DepartmentController {
 
 
     //查询所有部门
-    @PreAuthorize("hasAnyRole('USER')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Department>> getDepartments(){
         AppResult<List<Department>> appResult = new AppResult<>();
@@ -34,6 +34,7 @@ public class DepartmentController {
 
 
     //查询部门（条件查询，type = dno，根据部门编号查询， type = department ，根据部门名称模糊查询）
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Department>>  viewDepartment(@PathVariable("message") String message,
                                                 @RequestParam(value = "type", required = false) String type ){
@@ -71,6 +72,7 @@ public class DepartmentController {
 
 
     //主要用于查询指定部门当前在职员工信息
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/employees/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Employee>> getEmployees(@PathVariable("dno") String dno){
         AppResult<List<Employee>> appResult = new AppResult<>();
@@ -80,6 +82,7 @@ public class DepartmentController {
     }
 
     //主要用于查询指定部门的岗位信息
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/jobs/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Job>> getJobs(@PathVariable("dno") String dno){
         AppResult<List<Job>> appResult = new AppResult<>();
@@ -90,6 +93,7 @@ public class DepartmentController {
 
 
     //新增一个部门
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/",produces="application/Json;charset=UTF-8")
     @ResponseBody
     public AppResult<String> insertDepartment(@RequestBody Department department){
@@ -101,6 +105,7 @@ public class DepartmentController {
     }
 
     //修改部门
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> updateDepartment(@RequestBody Department department){
         AppResult<String> appResult = new AppResult<>();
@@ -111,6 +116,7 @@ public class DepartmentController {
     }
 
     //删除部门
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(value = "/",produces="application/Json;charset=UTF-8")
     public AppResult<String> deleteDepartment(@RequestBody String dno){
         AppResult<String> appResult = new AppResult<>();

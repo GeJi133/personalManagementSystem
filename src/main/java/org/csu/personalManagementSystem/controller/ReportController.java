@@ -1,12 +1,11 @@
 package org.csu.personalManagementSystem.controller;
-
-
 import org.csu.personalManagementSystem.domain.*;
 import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.csu.personalManagementSystem.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +18,7 @@ public class ReportController {
     @Autowired
     ReportService reportService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询离职情况
     @GetMapping(value = "/leavings", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Leaving>> getLeavings(){
@@ -39,6 +39,7 @@ public class ReportController {
 //        return appResult;
 //    }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询一段时间内指定部门的新聘员工信息
     @GetMapping(value = "/positionTransfer/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<PositionTransfer>> getAllPositionTransferByDnoAndTime(@PathVariable("dno") String dno,
@@ -50,6 +51,8 @@ public class ReportController {
 
         return appResult;
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询一段时间内指定部门的离职员工信息
     @GetMapping(value = "/leavings/{dno}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Leaving>> getLeavingsByTime(@PathVariable("dno") String dno,
@@ -62,6 +65,7 @@ public class ReportController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询所有部门调动情况
     @GetMapping(value = "/departmentTransfers", produces = "application/Json;charset=UTF-8")
     public AppResult<List<DepartmentTransfer>> getTransfers(){
@@ -71,6 +75,8 @@ public class ReportController {
 
         return appResult;
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询一段时间内岗位调动情况
     @GetMapping(value = "/departmentTransfers/time", produces = "application/Json;charset=UTF-8")
     public AppResult<List<DepartmentTransfer>> getLeavingsByTime(@RequestParam(value = "startData", required = false) String startData,
@@ -82,6 +88,7 @@ public class ReportController {
         return appResult;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //查询一段时间内调动情况
     @GetMapping(value = "/jobTransfers/time", produces = "application/Json;charset=UTF-8")
     public AppResult<List<JobTransfer>> getAllJobTransferByTime(@RequestParam(value = "startData", required = false) String startData,
@@ -96,6 +103,7 @@ public class ReportController {
         人事月报
      */
     //按年月查询所有部门调动信息
+      @PreAuthorize("hasAnyRole('ADMIN')")
       @GetMapping(value = "/departmentTransfers/month", produces = "application/Json;charset=UTF-8")
       public AppResult<List<DepartmentTransfer>> getAllTransferByMonth(@RequestParam(value = "year", required = false) String year,
                                                          @RequestParam(value = "month", required = false) String month){
@@ -107,6 +115,7 @@ public class ReportController {
       }
 
     //按年月查询所有离职信息
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/leavings/month", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Leaving>> getAllLeavingByMonth(@RequestParam(value = "year", required = false) String year,
                                                            @RequestParam(value = "month", required = false) String month){
@@ -115,7 +124,7 @@ public class ReportController {
         appResult = ResultBuilder.successData(ResultCode.OK,leavings);
         return appResult;
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //按年月查询所有部门调动信息
     @GetMapping(value = "/jobTransfers/month", produces = "application/Json;charset=UTF-8")
     public AppResult<List<JobTransfer>> getAlljobTransferByMonth(@RequestParam(value = "year", required = false) String year,
@@ -126,7 +135,7 @@ public class ReportController {
 
         return appResult;
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     //按年月查询所有离职信息
     @GetMapping(value = "/positionTransfers/month", produces = "application/Json;charset=UTF-8")
     public AppResult<List<PositionTransfer>> getAllPositionTransferByMonth(@RequestParam(value = "year", required = false) String year,

@@ -35,6 +35,10 @@ public class EmployeeService {
         return employeeMapper.getEmployeeByPage();
     }
 
+    public Employee getEmployeeById(String id){
+        return employeeMapper.getEmployeeById(id);
+    }
+
     public Integer addEmp(Employee employee){
         int result = employeeMapper.insertSelective(employee);
         return result;
