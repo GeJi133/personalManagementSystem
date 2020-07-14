@@ -1,15 +1,13 @@
 package org.csu.personalManagementSystem;
 
-import org.csu.personalManagementSystem.domain.Leaving;
-import org.csu.personalManagementSystem.domain.DepartmentTransfer;
-import org.csu.personalManagementSystem.domain.PositionTransfer;
-import org.csu.personalManagementSystem.persistence.ReportMapper;
+import org.csu.personalManagementSystem.domain.*;
+import org.csu.personalManagementSystem.service.JwtUserDetailsService;
+import org.csu.personalManagementSystem.service.RoleService;
 import org.csu.personalManagementSystem.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.json.GsonTester;
 
 import java.util.List;
 
@@ -18,13 +16,32 @@ import java.util.List;
 public class TestReport {
 
     @Autowired
+    RoleService roleService;
+
+    @Autowired
+    JwtUserDetailsService jwtUserDetailsService;
+
+    @Test
+    void tets(){
+        String userId="8211180507";
+        Role roles = roleService.getRoleByUserId (userId);
+
+        System.out.println (roles);
+        System.out.println ("Ushernae"+ roles.getName ());
+
+//        UserDetail userDetail=
+
+
+    }
+
+    @Autowired
     ReportService reportService;
 
-    //测试获取所有辞职数据
-    @Test
-    void testGetAllLeaving(){
-        reportService.getAllLeaving();
-    }
+//    //测试获取所有辞职数据
+//    @Test
+//    void testGetAllLeaving(){
+//        reportService.getAllLeaving();
+//    }
 
 
 

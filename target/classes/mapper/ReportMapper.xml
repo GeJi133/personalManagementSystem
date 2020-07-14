@@ -9,6 +9,8 @@
         *
         FROM
         leaving
+         where
+        status = 1
     </select>
 
 <!--    <select id="getAllLeavingByDno" resultType="Leaving">-->
