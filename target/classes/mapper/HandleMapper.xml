@@ -26,11 +26,23 @@
         update jobtransfer set status ='1',transferTime=current_date where id=#{id};
     </update>
 
-    <update id="handlePositionTransfer1" parameterType="PositionTransfer">
+    <update id="handlePositionTransfer11" parameterType="PositionTransfer">--         非人事系统实习生转正
         update employee set position='1' where id=#{id};
+    </update>
+
+    <update id="handlePositionTransfer12" parameterType="PositionTransfer">--         人事系统实习生转正
+        update employee set position='2' where id=#{id};
     </update>
 
     <update id="handlePositionTransfer2" parameterType="PositionTransfer">
         update positiontransfer set status ='1',transferDate=current_date where id=#{id}
     </update>
+
+    <insert id="handleNewEmployee1" parameterType="Employee">
+        insert into employee values (#{id},#{name},#{sex},#{department},#{career},#{position},#{jobs},#{language},#{family},current_date,DATE_ADD(current_date, INTERVAL 2 YEAR))
+    </insert>
+
+    <insert id="handleNewEmployee2" parameterType="Employee">
+        insert into account values (#{id},'123456')
+    </insert>
 </mapper>

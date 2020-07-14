@@ -1,10 +1,7 @@
 package org.csu.personalManagementSystem.persistence;
 
 
-import org.csu.personalManagementSystem.domain.JobTransfer;
-import org.csu.personalManagementSystem.domain.Leaving;
-import org.csu.personalManagementSystem.domain.DepartmentTransfer;
-import org.csu.personalManagementSystem.domain.PositionTransfer;
+import org.csu.personalManagementSystem.domain.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -15,6 +12,9 @@ public interface HandleMapper {
     void handleDepartmentTransfer2(DepartmentTransfer departmentTransfer);
     void handleJobTransfer1(JobTransfer jobTransfer);
     void handleJobTransfer2(JobTransfer jobTransfer);
-    void handlePositionTransfer1(PositionTransfer positionTransfer);
+    void handlePositionTransfer11(PositionTransfer positionTransfer);
+    void handlePositionTransfer12(PositionTransfer positionTransfer);
     void handlePositionTransfer2(PositionTransfer positionTransfer);
+    void handleNewEmployee1(Employee employee);
+    void handleNewEmployee2(Employee employee);
 }
