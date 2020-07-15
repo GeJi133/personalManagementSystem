@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class ApplyController {
     @Autowired
     ApplyService applyService;
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @PostMapping(value = "/leavings",produces="application/Json;charset=UTF-8" )        //提出离职申请
     @ResponseBody
     public AppResult<String> insertLeaving(@RequestBody Leaving leaving){
@@ -26,7 +27,7 @@ public class ApplyController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @PostMapping(value = "/departmentTransfers",produces="application/Json;charset=UTF-8" )
     @ResponseBody
     public AppResult<String> insertDepartmentTransfer(@RequestBody DepartmentTransfer departmentTransfer){        //提出部门调动申请
@@ -46,7 +47,7 @@ public class ApplyController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @PostMapping(value = "/positionTransfers",produces="application/Json;charset=UTF-8" )
     @ResponseBody
     public AppResult<String> insertJobTransfer(@RequestBody PositionTransfer positionTransfer){        //提出转正申请
@@ -57,7 +58,7 @@ public class ApplyController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/leavings",produces="application/Json;charset=UTF-8")
     @ResponseBody
     public AppResult<ArrayList<Leaving>> seeLeavingApplications(){      //查看离职申请
@@ -68,7 +69,7 @@ public class ApplyController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/departmentTransfers",produces="application/Json;charset=UTF-8")
     @ResponseBody
     public AppResult<ArrayList<DepartmentTransfer>> seeDepartmentTransferApplications(){        //查看部门调动申请
@@ -79,7 +80,7 @@ public class ApplyController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/jobTransfers",produces="application/Json;charset=UTF-8")
     @ResponseBody
     public AppResult<ArrayList<JobTransfer>> seeJobTransferApplications(){      //查看岗位调动申请
@@ -90,7 +91,7 @@ public class ApplyController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/positionTransfers",produces="application/Json;charset=UTF-8")
     @ResponseBody
     public AppResult<ArrayList<PositionTransfer>> seePositionTransferApplications(){        //查看转正申请

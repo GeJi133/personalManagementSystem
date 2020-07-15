@@ -20,7 +20,7 @@ public class InformationController {
     @Autowired
     InformationService informationService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/id/{id}",produces="application/Json;charset=UTF-8" )  //员工查看个人信息
     public AppResult<Employee> seeMyInformation(@PathVariable("id") String id){
         Employee employee=informationService.seeInformationById(id);
@@ -31,7 +31,7 @@ public class InformationController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/all",produces="application/Json;charset=UTF-8" )     //管理员查看所有员工信息
     public AppResult<ArrayList<Employee>> seeAllEmployeesInformation(){
         ArrayList employeeArrayList=new ArrayList<>();
@@ -41,7 +41,7 @@ public class InformationController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/practice",produces="application/Json;charset=UTF-8" )     //管理员查看所有试用期员工信息
     public AppResult<ArrayList<Employee>> seePracticeEmployeesInformation(){
         ArrayList employeeArrayList=new ArrayList<>();
@@ -51,7 +51,7 @@ public class InformationController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/formal",produces="application/Json;charset=UTF-8" )     //管理员查看所有正式员工信息
     public AppResult<ArrayList<Employee>> seeFormalEmployeesInformation(){
         ArrayList employeeArrayList=new ArrayList<>();
@@ -61,7 +61,7 @@ public class InformationController {
         return appResult;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @PatchMapping(value = "id/{id}",produces = "application/Json;charset=UTF-8")
     public AppResult<String> updateInformation(@RequestBody Employee employee){
         AppResult<String> appResult=new AppResult<>();
@@ -71,6 +71,5 @@ public class InformationController {
         else appResult=ResultBuilder.fail(ResultCode.BadRequest);
         return appResult;
     }
-
 
 }

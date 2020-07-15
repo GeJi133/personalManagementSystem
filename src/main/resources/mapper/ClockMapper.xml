@@ -5,19 +5,19 @@
 <mapper namespace="org.csu.personalManagementSystem.persistence.ClockMapper">
 
     <select id="getClockByPage" resultType="Clock">
-          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id;
+          select employee.id as id, attendtime, leavetime, name, sex, email,status from attendence_record, employee where employee.id = attendence_record.id;
     </select>
 
     <select id="getAllClock" resultType="Clock">
-          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id;
+          select employee.id as id, attendtime, leavetime, name, sex, email,status  from attendence_record, employee where employee.id = attendence_record.id;
     </select>
 
     <select id="getClockById" parameterType="string" resultType="Clock">
-          select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id and attendence_record.id = #{id};
+          select employee.id as id, attendtime, leavetime, name, sex, email,status from attendence_record, employee where employee.id = attendence_record.id and attendence_record.id = #{id};
     </select>
 
     <select id="getClockByName" parameterType="string" resultType="Clock">
-        select employee.id as id, attendtime, leavetime, name, sex, email from attendence_record, employee where employee.id = attendence_record.id
+        select employee.id as id, attendtime, leavetime, name, sex, email ,status from attendence_record, employee where employee.id = attendence_record.id
         <if test="name != null and name!=''">
             AND (name like concat('%',#{name},'%'))
         </if>

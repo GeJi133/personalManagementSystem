@@ -8,6 +8,15 @@ public class Clock {
     private Timestamp attendtime;
     private Timestamp leavetime;
     private String name;
+    private String Status;
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
 
     public String getName() {
         return name;

@@ -23,7 +23,7 @@ public class DepartmentController {
 
 
     //查询所有部门
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Department>> getDepartments(){
         AppResult<List<Department>> appResult = new AppResult<>();
@@ -34,7 +34,7 @@ public class DepartmentController {
 
 
     //查询部门（条件查询，type = dno，根据部门编号查询， type = department ，根据部门名称模糊查询）
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','TRAINEE')")
     @GetMapping(value = "/{message}", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Department>>  viewDepartment(@PathVariable("message") String message,
                                                 @RequestParam(value = "type", required = false) String type ){
