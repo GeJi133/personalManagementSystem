@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.personalManagementSystem.persistence.AchievementMapper">
+    <select id="getAllAchievement" resultType="Achievement">
+        select * from achievement
+    </select>
+
+    <select id="getAchievementByDateAndId" resultType="Achievement">
+        SELECT
+        *
+        FROM
+        achievement
+        where id=#{id}
+        <if test="startData != null and startData!=''" >
+        AND date_format(achievementDate,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+        AND  date_format(achievementDate,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+    <select id="getAttendanceByDateAndId" resultType="Attendance">
+        SELECT
+        *
+        FROM
+        attendance
+        where id=#{id} and status=0
+        <if test="startData != null and startData!=''" >
+            AND date_format(attendanceDate,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(attendanceDate,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+    <select id="getNotAttendanceByDateAndId" resultType="Attendance">
+        SELECT
+        *
+        FROM
+        attendance
+        where id=#{id} and status=2
+        <if test="startData != null and startData!=''" >
+            AND date_format(attendanceDate,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(attendanceDate,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+
+    <select id="getLateAttendanceByDateAndId" resultType="Attendance">
+        SELECT
+        *
+        FROM
+        attendance
+        where id=#{id} and status=1
+        <if test="startData != null and startData!=''" >
+            AND date_format(attendanceDate,'%Y-%m-%d') >=#{startData}
+        </if>
+        <if test="endData != null and endData!=''" >
+            AND  date_format(attendanceDate,'%Y-%m-%d') &lt;= #{endData}
+        </if>
+    </select>
+</mapper>
