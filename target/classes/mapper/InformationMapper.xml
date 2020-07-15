@@ -3,28 +3,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.personalManagementSystem.persistence.InformationMapper">
     <select id="seeInformation" resultType="Employee" parameterType="String">
-        select * from employee
-        where id=#{id}
+        select employee.id,name,sex,department,position,jobs,marriage,starttime,endtime,email,career,family,language from employee,employee_career,employee_family,employee_language
+        where employee.id=#{id} and employee.id=employee_career.id and employee.id=employee_family.id and employee.id=employee_language.id
     </select>
 
+
+
     <select id="seeAllEmployeesInformation" resultType="Employee">
-        select * from employee
+        select employee.id,name,sex,department,position,jobs,marriage,starttime,endtime,email,career,family,language from employee,employee_career,employee_family,employee_language
+        where employee.id=employee_career.id and employee.id=employee_family.id and employee.id=employee_language.id
     </select>
 
     <select id="seePracticeEmployeesInformation" resultType="Employee">
-        select * from employee
-        where position ='0'
+        select employee.id,name,sex,department,position,jobs,marriage,starttime,endtime,email,career,family,language from employee,employee_career,employee_family,employee_language
+        where position=0 and employee.id=employee_career.id and employee.id=employee_family.id and employee.id=employee_language.id
     </select>
 
     <select id="seeFormalEmployeesInformation" resultType="Employee">
-        select * from employee
-        where (position ='1' or position ='2')
+        select employee.id,name,sex,department,position,jobs,marriage,starttime,endtime,email,career,family,language from employee,employee_career,employee_family,employee_language
+        where (position =1 or position=2)and employee.id=employee_career.id and employee.id=employee_family.id and employee.id=employee_language.id
     </select>
 
     <update id="updateInformation" parameterType="Employee">
-        update employee
-        set name=#{name},sex=#{sex},department=#{department},
+        update employee,employee_career,employee_family,employee_language
+        set name=#{name},sex=#{sex},marriage=#{marriage},email=#{email},
         career=#{career},language =#{language},family=#{family}
-        where id=#{id}
+        where employee.id=#{id} and employee.id=employee_career.id and employee.id=employee_family.id and employee.id=employee_language.id
     </update>
+
 </mapper>

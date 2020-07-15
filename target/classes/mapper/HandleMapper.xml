@@ -18,6 +18,18 @@
         update leaving set status ='1',leavingTime=current_date where id=#{id};
     </delete>
 
+<!--    <delete id="handleLeaving3" parameterType="Leaving">-->
+<!--        delete from employee_career where id=#{id};-->
+<!--    </delete>-->
+
+<!--    <delete id="handleLeaving4" parameterType="Leaving">-->
+<!--        delete from employee_family where id=#{id};-->
+<!--    </delete>-->
+
+<!--    <delete id="handleLeaving5" parameterType="Leaving">-->
+<!--        delete from employee_language where id=#{id};-->
+<!--    </delete>-->
+
     <update id="handleJobTransfer1" parameterType="JobTransfer">
         update employee set jobs=#{jobAfter} where id=#{id};
     </update>
@@ -39,10 +51,26 @@
     </update>
 
     <insert id="handleNewEmployee1" parameterType="Employee">
-        insert into employee values (#{id},#{name},#{sex},#{department},#{career},#{position},#{jobs},#{language},#{family},current_date,DATE_ADD(current_date, INTERVAL 2 YEAR))
+        insert into employee(id,name,sex,department,position,jobs,marriage,starttime,endtime,email)
+        values (#{id},#{name},#{sex},#{department},"0",#{jobs},#{marriage},current_date,DATE_ADD(current_date, INTERVAL 2 YEAR),#{email})
     </insert>
 
     <insert id="handleNewEmployee2" parameterType="Employee">
         insert into account values (#{id},'123456')
     </insert>
+
+    <insert id="handleNewEmployee3" parameterType="Employee">
+        insert into employee_career(id,career) values (#{id},#{career})
+    </insert>
+
+    <insert id="handleNewEmployee4" parameterType="Employee">
+        insert into employee_family(id,family) values (#{id},#{family})
+    </insert>
+
+    <insert id="handleNewEmployee5" parameterType="Employee">
+        insert into employee_language(id,language )  values (#{id},#{language})
+    </insert>
+
+
+
 </mapper>
