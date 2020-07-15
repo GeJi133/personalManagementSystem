@@ -7,14 +7,15 @@ public class Employee {
     private String name;
     private String sex;
     private String department;
-    private String career;
     private String position;
     private String jobs;
-    private String language;
-    private String family;
-    private String email;
+    private String marriage;
     private String starttime;
     private String endtime;
+    private String email;
+    private String career;
+    private String family;
+    private String language;
 
     public String getId() {
         return id;
@@ -48,14 +49,6 @@ public class Employee {
         this.department = department;
     }
 
-    public String getCareer() {
-        return career;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
-    }
-
     public String getPosition() {
         return position;
     }
@@ -72,26 +65,12 @@ public class Employee {
         this.jobs = jobs;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getMarriage() {
+        return marriage;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getFamily() { return family; }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMarriage(String marriage) {
+        this.marriage = marriage;
     }
 
     public String getStarttime() {
@@ -108,5 +87,37 @@ public class Employee {
 
     public void setEndtime(String endtime) {
         this.endtime = endtime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

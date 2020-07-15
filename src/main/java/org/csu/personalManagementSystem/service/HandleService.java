@@ -19,6 +19,9 @@ public class HandleService {
 
         handleMapper.handleLeaving1(leaving);
         handleMapper.handleLeaving2(leaving);
+//        handleMapper.handleLeaving3(leaving);
+//        handleMapper.handleLeaving4(leaving);
+//        handleMapper.handleLeaving5(leaving);
     }
 
     public void handleDepartmentTransfer(DepartmentTransfer departmentTransfer){
@@ -46,5 +49,8 @@ public class HandleService {
     public void handleNewEmployee(Employee employee){
         handleMapper.handleNewEmployee1(employee);
         handleMapper.handleNewEmployee2(employee);
+        handleMapper.handleNewEmployee3(employee);
+        handleMapper.handleNewEmployee4(employee);
+        handleMapper.handleNewEmployee5(employee);
     }
 }

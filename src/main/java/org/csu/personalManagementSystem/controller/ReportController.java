@@ -6,6 +6,7 @@ import org.csu.personalManagementSystem.other.ResultBuilder;
 import org.csu.personalManagementSystem.other.ResultCode;
 import org.csu.personalManagementSystem.persistence.ReportMapper;
 import org.csu.personalManagementSystem.service.ReportService;
+import org.csu.personalManagementSystem.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,8 @@ public class ReportController {
     @Autowired
     ReportService reportService;
 
+    @Autowired
+    SalaryService salaryService;
     //查询离职情况
     @GetMapping(value = "/leavings", produces = "application/Json;charset=UTF-8")
     public AppResult<List<Leaving>> getLeavings(){
@@ -133,6 +136,26 @@ public class ReportController {
         AppResult<List<PositionTransfer>> appResult = new AppResult<>();
         List<PositionTransfer> leavings = reportService.getAllPositionTransferByMonth(year,month);
         appResult = ResultBuilder.successData(ResultCode.OK,leavings);
+        return appResult;
+    }
+
+    @GetMapping(value = "/achievements", produces = "application/Json;charset=UTF-8")
+    public AppResult<Integer> getAchievementByTimeAndId(@RequestParam(value = "startData", required = false) String startData,
+                                                                           @RequestParam(value = "endData", required = false) String endData,
+                                                                           @RequestParam(value = "id") String id){
+        AppResult<Integer> appResult = new AppResult<>();
+        Integer sum=salaryService.getAchievementByDateAndId(startData,endData,id);
+        appResult = ResultBuilder.successData(ResultCode.OK,sum);
+        return appResult;
+    }
+
+    @GetMapping(value = "/attendances", produces = "application/Json;charset=UTF-8")
+    public AppResult<float[]> getAttendanceByTimeAndId(@RequestParam(value = "startData", required = false) String startData,
+                                                            @RequestParam(value = "endData", required = false) String endData,
+                                                            @RequestParam(value = "id") String id){
+        AppResult<float[]> appResult = new AppResult<>();
+        float []result =salaryService.getAttendanceRateByDateAndId(startData,endData,id);
+        appResult = ResultBuilder.successData(ResultCode.OK,result);
         return appResult;
     }
 }

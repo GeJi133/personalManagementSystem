@@ -52,7 +52,7 @@ public class HandleApplicaionsController {
 
     @PostMapping(value = "/newEmployee",produces="application/Json;charset=UTF-8" )
     @ResponseBody
-    public AppResult<String> insertNewEmployee(@RequestBody Employee employee){        //提出部门调动申请
+    public AppResult<String> insertNewEmployee(@RequestBody Employee employee){        //入职管理
         AppResult<String> appResult = new AppResult<>();
         handleService.handleNewEmployee(employee);
         appResult= ResultBuilder.successNoData(ResultCode.Handled);
