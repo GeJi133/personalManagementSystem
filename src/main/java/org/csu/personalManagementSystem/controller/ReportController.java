@@ -134,7 +134,7 @@ public class ReportController {
     public AppResult<List<JobTransfer>> getAlljobTransferByMonth(@RequestParam(value = "year", required = false) String year,
                                                                      @RequestParam(value = "month", required = false) String month){
         AppResult<List<JobTransfer>> appResult = new AppResult<>();
-        List<JobTransfer> transfers = reportService.getAllJobTransferByTime(year,month);
+        List<JobTransfer> transfers = reportService.getAllJobTransferByMonth(year,month);
         appResult = ResultBuilder.successData(ResultCode.OK,transfers);
 
         return appResult;

@@ -6,7 +6,15 @@ public class Department {
     private String business;
     private String manager; //部门经理，只能get到，要修改到员工信息修改模块去修改
     private String performance;
+    private String mid;
 
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
 
     public String getDno() {
         return dno;

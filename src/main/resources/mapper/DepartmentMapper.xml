@@ -29,9 +29,9 @@
         department left join employee on department.mid = employee.id
         WHERE 1=1
         <if test="department != null and department!=''">
-        AND (department.department like concat('%',#{department},'%'))
+            AND (department.department like concat('%',#{department},'%'))
         </if>
-  </select>
+    </select>
 
 
     <select id="getDepartmentByBusiness" parameterType="string" resultType="Department">
@@ -52,13 +52,13 @@
         FROM
         department,employee,employee_career,employee_language,employee_family
         WHERE department.department = employee.department
-             AND employee.id = employee_career.id
+        AND employee.id = employee_career.id
         AND employee.id = employee_language.id
         AND employee.id = employee_family.id
         <if test="dno != null and dno!=''">
             AND department.department = #{dno}
         </if>
-            AND employee.position in ( 1 , 2)
+        AND employee.position in ( 1 , 2)
     </select>
 
     <select id="getAllJob" parameterType="string" resultType="Job">
@@ -87,7 +87,6 @@
         <set>
             department=#{department},
             business=#{business},
-            mid=#{mid},
             performance=#{performance}
         </set>
         WHERE dno = #{dno}
