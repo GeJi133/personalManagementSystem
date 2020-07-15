@@ -48,12 +48,15 @@
 
     <select id="getAllEmployee" parameterType="string" resultType="Employee">
         SELECT
-        id,name,sex,employee.department,career,position,jobs,language,family,startTime,endTime
+        employee.id,name,sex,employee.department,employee_career.career,position,jobs,employee_language.language,employee_family.family,startTime,endTime
         FROM
-        department,employee
+        department,employee,employee_career,employee_language,employee_family
         WHERE department.department = employee.department
+             AND employee.id = employee_career.id
+        AND employee.id = employee_language.id
+        AND employee.id = employee_family.id
         <if test="dno != null and dno!=''">
-            AND department.dno = #{dno}
+            AND department.department = #{dno}
         </if>
             AND employee.position in ( 1 , 2)
     </select>
@@ -65,7 +68,7 @@
         department,job
         WHERE department.dno = job.dno
         <if test="dno != null and dno!=''">
-            AND department.dno = #{dno}
+            AND department.department = #{dno}
         </if>
 
     </select>
