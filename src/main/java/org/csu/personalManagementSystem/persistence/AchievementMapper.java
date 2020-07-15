@@ -3,10 +3,11 @@ package org.csu.personalManagementSystem.persistence;
 import org.csu.personalManagementSystem.domain.Achievement;
 import org.csu.personalManagementSystem.domain.Attendance;
 import org.csu.personalManagementSystem.domain.DepartmentTransfer;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public interface AchievementMapper {
 
 //    ArrayList<Achievement> getAllAchievement();     //查询所有绩效
