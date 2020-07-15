@@ -69,7 +69,7 @@
         department left join leaving on department.department = leaving.department
         where leaving.status = 1
         <if test="dno != null and dno!='' and dno!='time' and dno!='TIME'  " >
-            AND  department.dno = #{dno}
+            AND  department.department = #{dno}
         </if>
        <if test="startData != null and startData!=''" >
         AND  date_format(leavingtime,'%Y-%m-%d') >=#{startData}
@@ -86,7 +86,7 @@
         department left join PositionTransfer on department.department = PositionTransfer.department
         where PositionTransfer.status = 1
         <if test="dno != null and dno!='' and dno!='time' and dno!='TIME'  " >
-            AND  department.dno = #{dno}
+            AND  department.department = #{dno}
         </if>
         <if test="startData != null and startData!=''" >
             AND  date_format(transferDate,'%Y-%m-%d') >=#{startData}
